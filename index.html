@@ -1,11 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Hello World</h1>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonBondhu - Your Health Companion</title>
+    
+    <!-- Link to the shared stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-heart-pulse"></i>
+                <span class="app-name" data-en="MonBondhu" data-bn="মনবন্ধু">MonBondhu</span>
+            </div>
+            <button class="language-toggle" id="main-language-toggle">
+                <i class="fas fa-language"></i>
+                <span class="lang-en">বাংলা</span>
+                <span class="lang-bn">English</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="welcome-section">
+                <h1 data-en="Welcome to MonBondhu" data-bn="মনবন্ধুতে স্বাগতম">Welcome to MonBondhu</h1>
+                <p data-en="Your trusted companion for health and wellness in rural Bangladesh. Click on a mission below to get started." data-bn="গ্রামীণ বাংলাদেশে স্বাস্থ্য ও সুস্থতার জন্য আপনার বিশ্বস্ত সঙ্গী। শুরু করতে নীচের একটি মিশনে ক্লিক করুন।">Your trusted companion for health and wellness in rural Bangladesh. Click on a mission below to get started.</p>
+            </div>
+
+            <div class="missions-grid">
+                <!-- Mission 1 -->
+                <a href="page1.html" class="mission-card">
+                    <div class="card-icon" style="background-color: #e3f2fd;">
+                        <i class="fas fa-clipboard-check" style="color: #0d47a1;"></i>
+                    </div>
+                    <h3 data-en="Mental Health Check" data-bn="মানসিক স্বাস্থ্য পরীক্ষা">Mental Health Check</h3>
+                    <p data-en="Assess your wellbeing" data-bn="আপনার সুস্থতা মূল্যায়ন করুন">Assess your wellbeing</p>
+                </a>
+
+                <!-- Mission 2 -->
+                <a href="page2.html" class="mission-card">
+                    <div class="card-icon" style="background-color: #e8f5e9;">
+                        <i class="fas fa-map-marked-alt" style="color: #1b5e20;"></i>
+                    </div>
+                    <h3 data-en="Community Health Map" data-bn="সম্প্রদায় স্বাস্থ্য মানচিত্র">Community Health Map</h3>
+                    <p data-en="Find nearby healthcare" data-bn="কাছাকাছি স্বাস্থ্যসেবা খুঁজুন">Find nearby healthcare</p>
+                </a>
+
+                <!-- Mission 3 -->
+                <a href="page3.html" class="mission-card">
+                    <div class="card-icon" style="background-color: #fce4ec;">
+                        <i class="fas fa-user-secret" style="color: #880e4f;"></i>
+                    </div>
+                    <h3 data-en="Anonymous Help" data-bn="বেনামী সাহায্য">Anonymous Help</h3>
+                    <p data-en="Request support privately" data-bn="ব্যক্তিগতভাবে সহায়তা চান">Request support privately</p>
+                </a>
+
+                <!-- Mission 4 -->
+                <a href="page4.html" class="mission-card">
+                    <div class="card-icon" style="background-color: #fff3e0;">
+                        <i class="fas fa-shield-virus" style="color: #e65100;"></i>
+                    </div>
+                    <h3 data-en="Seasonal Health Tips" data-bn="ঋতু স্বাস্থ্য পরামর্শ">Seasonal Health Tips</h3>
+                    <p data-en="Stay healthy year-round" data-bn="সারা বছর সুস্থ থাকুন">Stay healthy year-round</p>
+                </a>
+
+                <!-- Mission 5 (Placeholder) -->
+                <a href="page5.html" class="mission-card">
+                    <div class="card-icon" style="background-color: #f3e5f5;">
+                        <i class="fas fa-utensils" style="color: #4a148c;"></i>
+                    </div>
+                    <h3 data-en="Nutrition Guide" data-bn="পুষ্টি গাইড">Nutrition Guide</h3>
+                    <p data-en="Learn about healthy eating" data-bn="স্বাস্থ্যকর খাদ্য সম্পর্কে জানুন">Learn about healthy eating</p>
+                </a>
+
+                <!-- Mission 6 -->
+                <a href="page6.html" class="mission-card">
+                    <div class="card-icon" style="background-color: #e0f2f1;">
+                        <i class="fas fa-notes-medical" style="color: #004d40;"></i>
+                    </div>
+                    <h3 data-en="Symptom Guide" data-bn="লক্ষণ সম্পর্কে সচেতনতা">Symptom Guide</h3>
+                    <p data-en="Understand health signs" data-bn="স্বাস্থ্যের লক্ষণগুলি বুঝুন">Understand health signs</p>
+                </a>
+
+                <!-- Mission 7 -->
+                <a href="page7.html" class="mission-card">
+                    <div class="card-icon" style="background-color: #e1f5fe;">
+                        <i class="fas fa-calendar-check" style="color: #01579b;"></i>
+                    </div>
+                    <h3 data-en="Health Events" data-bn="স্বাস্থ্য কর্মসূচি">Health Events</h3>
+                    <p data-en="Join community programs" data-bn="সম্প্রদায় কর্মসূচিতে যোগ দিন">Join community programs</p>
+                </a>
+
+                <!-- Mission 8 -->
+                <a href="page8.html" class="mission-card">
+                    <div class="card-icon" style="background-color: #e8eaf6;">
+                        <i class="fas fa-hands-helping" style="color: #283593;"></i>
+                    </div>
+                    <h3 data-en="Health Volunteers" data-bn="স্বাস্থ্য স্বেচ্ছাসেবক">Health Volunteers</h3>
+                    <p data-en="Connect with local helpers" data-bn="স্থানীয় সহায়কদের সাথে যোগাযোগ করুন">Connect with local helpers</p>
+                </a>
+               
+
+                <!-- Mission 10 -->
+                <a href="page10.html" class="mission-card">
+                    <div class="card-icon" style="background-color: #ede7f6;">
+                        <i class="fas fa-microphone-alt" style="color: #311b92;"></i>
+                    </div>
+                    <h3 data-en="Voice Assistant" data-bn="ভয়েস সহকারী">Voice Assistant</h3>
+                    <p data-en="Get help by speaking" data-bn="কথা বলে সাহায্য নিন">Get help by speaking</p>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p><span data-en="© 2023 MonBondhu. All rights reserved." data-bn="© ২০২৩ মনবন্ধু। সর্বস্বত্ব সংরক্ষিত।">© 2023 MonBondhu. All rights reserved.</span></p>
+    </footer>
+
+    <!-- Simple JS for language toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('main-language-toggle');
+            const body = document.body;
+
+            function applyLanguage(lang) {
+                body.setAttribute('data-lang', lang);
+                const elementsToTranslate = document.querySelectorAll('[data-en], [data-bn]');
+                elementsToTranslate.forEach(el => {
+                    el.textContent = lang === 'bn' ? el.getAttribute('data-bn') : el.getAttribute('data-en');
+                });
+                const toggleText = langToggle.querySelector('span');
+                if (toggleText) {
+                    toggleText.textContent = lang === 'bn' ? 'English' : 'বাংলা';
+                }
+                localStorage.setItem('language', lang);
+            }
+
+            langToggle.addEventListener('click', () => {
+                const currentLang = body.getAttribute('data-lang') || 'en';
+                applyLanguage(currentLang === 'en' ? 'bn' : 'en');
+            });
+
+            // Apply saved language on load
+            applyLanguage(localStorage.getItem('language') || 'en');
+        });
+    </script>
+</body>
 </html>

@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mission 10: Voice-First Health Assistant - ShasthoSheba</title>
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Variables */
+      :root {
+        --primary-color: #2c7a7b;
+        --secondary-color: #4fd1c5;
+        --accent-color: #f6ad55;
+        --text-color: #2d3748;
+        --light-bg: #f7fafc;
+        --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --success-color: #48bb78;
+        --warning-color: #ed8936;
+        --danger-color: #f56565;
+        --voice-color: #805ad5;
+        --voice-light: #e9d8fd;
+      }
+
+      /* Typography */
+      body {
+        font-family: "Roboto", Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--light-bg);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+        color: var(--primary-color);
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        color: var(--primary-color);
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+      }
+
+      h4 {
+        font-size: 1.2rem;
+        color: var(--primary-color);
+      }
+
+      p {
+        margin-bottom: 1rem;
+      }
+
+      /* Layout */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      /* Header */
+      header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 1rem 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo i {
+        font-size: 1.8rem;
+        color: var(--secondary-color);
+      }
+
+      .logo h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+      }
+
+      .header-controls {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .mission-badge {
+        background-color: var(--accent-color);
+        color: var(--primary-color);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+
+      .language-toggle {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 2px solid white;
+        border-radius: 30px;
+        padding: 0.4rem 0.8rem;
+        color: white;
+        cursor: pointer;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      /* Mission Header */
+      .mission-header {
+        text-align: center;
+        padding: 2rem 0;
+        background-color: white;
+        margin: 1rem 0;
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
+      }
+
+      .mission-header h2 {
+        margin-bottom: 0.5rem;
+      }
+
+      .mission-header p {
+        color: #718096;
+        font-size: 1rem;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .sdg-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #f0f9ff;
+        color: #0369a1;
+        padding: 0.5rem 1rem;
+        border-radius: 30px;
+        margin-top: 1rem;
+        font-weight: 500;
+      }
+
+      /* Voice Demo Section */
+      .voice-demo-section {
+        background: linear-gradient(135deg, var(--voice-color), #9f7aea);
+        color: white;
+        padding: 3rem 2rem;
+        border-radius: 15px;
+        margin: 2rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .voice-demo-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 1px,
+          transparent 1px
+        );
+        background-size: 20px 20px;
+        animation: moveGrid 20s linear infinite;
+      }
+
+      @keyframes moveGrid {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(20px, 20px);
+        }
+      }
+
+      .voice-demo-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .voice-demo-section h3 {
+        color: white;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .voice-demo-section p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .voice-interface {
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 2rem;
+        max-width: 500px;
+        margin: 0 auto;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .voice-button {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border: 4px solid white;
+        color: white;
+        font-size: 3rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 2rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .voice-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .voice-button:active {
+        transform: scale(0.95);
+      }
+
+      .voice-text {
+        font-size: 1.1rem;
+        margin-top: 1rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      /* Story Section */
+      .story-section {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
+        margin: 2rem 0;
+      }
+
+      .story-section h3 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: var(--primary-color);
+      }
+
+      .story-card {
+        background: linear-gradient(135deg, #fef5e7, #fdebd0);
+        padding: 2rem;
+        border-radius: 10px;
+        border-left: 5px solid var(--accent-color);
+        position: relative;
+      }
+
+      .story-card::before {
+        content: '"';
+        position: absolute;
+        top: 10px;
+        left: 15px;
+        font-size: 3rem;
+        color: var(--accent-color);
+        opacity: 0.3;
+      }
+
+      .story-content {
+        margin-left: 2rem;
+      }
+
+      .story-content h4 {
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+      }
+
+      .story-content p {
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+
+      .grandmother-highlight {
+        background-color: var(--voice-light);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1.5rem 0;
+        border-left: 4px solid var(--voice-color);
+      }
+
+      .grandmother-highlight h4 {
+        color: var(--voice-color);
+        margin-bottom: 0.5rem;
+      }
+
+      /* Voice Commands Section */
+      .commands-section {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
+        margin: 2rem 0;
+      }
+
+      .commands-section h3 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: var(--primary-color);
+      }
+
+      .commands-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .command-card {
+        background-color: var(--light-bg);
+        padding: 1.5rem;
+        border-radius: 10px;
+        border-left: 4px solid var(--voice-color);
+        transition: all 0.3s ease;
+      }
+
+      .command-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .command-icon {
+        font-size: 2rem;
+        color: var(--voice-color);
+        margin-bottom: 1rem;
+      }
+
+      .command-bn {
+        background-color: var(--voice-color);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        font-family: "Hind Siliguri", sans-serif;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+      }
+
+      .command-en {
+        color: #4a5568;
+        font-style: italic;
+        font-size: 0.9rem;
+      }
+
+      .command-description {
+        margin-top: 1rem;
+        color: var(--text-color);
+      }
+
+      /* Innovation Section */
+      .innovation-section {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
+        margin: 2rem 0;
+      }
+
+      .innovation-section h3 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: var(--primary-color);
+      }
+
+      .innovation-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .innovation-card {
+        background: linear-gradient(135deg, var(--voice-light), #faf5ff);
+        padding: 2rem;
+        border-radius: 10px;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .innovation-card:hover {
+        border-color: var(--voice-color);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(128, 90, 213, 0.2);
+      }
+
+      .innovation-card i {
+        font-size: 3rem;
+        color: var(--voice-color);
+        margin-bottom: 1rem;
+      }
+
+      .innovation-card h4 {
+        color: var(--voice-color);
+        margin-bottom: 1rem;
+      }
+
+      .innovation-card p {
+        color: #4a5568;
+        line-height: 1.6;
+      }
+
+      /* Impact Section */
+      .impact-section {
+        background: linear-gradient(135deg, var(--success-color), #38a169);
+        color: white;
+        padding: 3rem 2rem;
+        border-radius: 15px;
+        margin: 2rem 0;
+        text-align: center;
+      }
+
+      .impact-section h3 {
+        color: white;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .impact-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .stat-item {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 1.5rem;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      /* Features Section */
+      .features-section {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
+        margin: 2rem 0;
+      }
+
+      .features-section h3 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: var(--primary-color);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .feature-card {
+        background-color: var(--light-bg);
+        padding: 2rem;
+        border-radius: 10px;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-card i {
+        font-size: 2.5rem;
+        color: var(--voice-color);
+        margin-bottom: 1rem;
+      }
+
+      .feature-card h4 {
+        color: var(--voice-color);
+        margin-bottom: 1rem;
+      }
+
+      .feature-card p {
+        color: #4a5568;
+      }
+
+      /* Try Now Section */
+      .try-now-section {
+        background: linear-gradient(135deg, var(--voice-color), #9f7aea);
+        color: white;
+        padding: 3rem 2rem;
+        border-radius: 15px;
+        margin: 2rem 0;
+        text-align: center;
+      }
+
+      .try-now-section h3 {
+        color: white;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .try-now-section p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .try-button {
+        background-color: white;
+        color: var(--voice-color);
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .try-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 1.5rem 0;
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      footer p {
+        font-size: 0.9rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .mission-header h2 {
+          font-size: 1.5rem;
+        }
+
+        .voice-demo-section h3 {
+          font-size: 1.5rem;
+        }
+
+        .voice-button {
+          width: 100px;
+          height: 100px;
+          font-size: 2.5rem;
+        }
+
+        .commands-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .innovation-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .impact-stats {
+          grid-template-columns: 1fr;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Language Toggle Styles */
+      .lang-en {
+        display: inline;
+      }
+
+      .lang-bn {
+        display: none;
+      }
+
+      body.lang-bn .lang-en {
+        display: none;
+      }
+
+      body.lang-bn .lang-bn {
+        display: inline;
+      }
+
+      /* Bengali Font */
+      @import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;700&display=swap");
+
+      body.lang-bn {
+        font-family: "Hind Siliguri", "Roboto", sans-serif;
+      }
+
+      /* Icon Font */
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <i class="fas fa-microphone-alt"></i>
+            <h1>
+              <span class="lang-en">ShasthoSheba</span>
+              <span class="lang-bn">শাস্ত্রোশেবা</span>
+            </h1>
+          </div>
+          <div class="header-controls">
+            <div class="mission-badge">
+              <span class="lang-en"><a href="index.html">Home</a></span>
+              <span class="lang-bn">হোম</span>
+            </div>
+            <button class="language-toggle" type="button">
+              <i class="fas fa-language"></i>
+              <span class="lang-en">বাংলা</span>
+              <span class="lang-bn">English</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="mission-header">
+          <h2>
+            <span class="lang-en">Voice-First Health Assistant</span>
+            <span class="lang-bn">ভয়েস-ফার্স্ট স্বাস্থ্য সহকারী</span>
+          </h2>
+          <p>
+            <span class="lang-en"
+              >Breaking literacy barriers with voice technology. Access health
+              information just by speaking - no reading required!</span
+            >
+            <span class="lang-bn"
+              >ভয়েস প্রযুক্তির সাথে সাক্ষরতা বাধা ভাঙুন। শুধু কথা বলে স্বাস্থ্য
+              তথ্য অ্যাক্সেস করুন - পড়ার প্রয়োজন নেই!</span
+            >
+          </p>
+          <div class="sdg-badge">
+            <i class="fas fa-globe"></i>
+            <span class="lang-en">SDG 3 - Innovation & Fair Access</span>
+            <span class="lang-bn"
+              >এসডিজি ৩ - উদ্ভাবন ও ন্যায্য প্রবেশাধিকার</span
+            >
+          </div>
+        </div>
+
+        <div class="voice-demo-section">
+          <div class="voice-demo-content">
+            <h3>
+              <span class="lang-en">Try Voice Assistant Now</span>
+              <span class="lang-bn">এখনই ভয়েস সহকারী চেষ্টা করুন</span>
+            </h3>
+            <p>
+              <span class="lang-en"
+                >Simply tap the microphone and speak in Bengali or English</span
+              >
+              <span class="lang-bn"
+                >শুধু মাইক্রোফোনে ট্যাপ করুন এবং বাংলা বা ইংরেজিতে কথা
+                বলুন</span
+              >
+            </p>
+
+            <div class="voice-interface">
+              <div class="voice-button">
+                <i class="fas fa-microphone"></i>
+              </div>
+              <div class="voice-text">
+                <span class="lang-en">Tap to start speaking</span>
+                <span class="lang-bn">কথা বলতে শুরু করতে ট্যাপ করুন</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-section">
+          <h3>
+            <span class="lang-en">Hablu's Reality Check</span>
+            <span class="lang-bn">হাবলুর বাস্তবতা পরীক্ষা</span>
+          </h3>
+          <div class="story-card">
+            <div class="story-content">
+              <h4>
+                <span class="lang-en">The Story of Hablu's Grandmother</span>
+                <span class="lang-bn">হাবলুর দাদীর গল্প</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >In a small village in Bangladesh, Hablu's grandmother faces a
+                  daily challenge that millions of rural Bangladeshis experience
+                  - she cannot read or write. But she has a smartphone and uses
+                  voice commands to navigate.</span
+                >
+                <span class="lang-bn"
+                  >বাংলাদেশের একটি ছোট গ্রামে, হাবলুর দাদী একটি দৈনিক
+                  চ্যালেঞ্জের মুখোমুখি হন যা লক্ষ লক্ষ গ্রামীণ বাংলাদেশী
+                  অভিজ্ঞতা করে - তিনি পড়তে বা লিখতে পারেন না। কিন্তু তার একটি
+                  স্মার্টফোন আছে এবং তিনি নেভিগেট করতে ভয়েস কমান্ড ব্যবহার
+                  করেন।</span
+                >
+              </p>
+
+              <div class="grandmother-highlight">
+                <h4>
+                  <span class="lang-en">The Challenge</span>
+                  <span class="lang-bn">চ্যালেঞ্জ</span>
+                </h4>
+                <p>
+                  <span class="lang-en"
+                    >Traditional health apps require reading. For elderly and
+                    low-literacy users, this creates a barrier to accessing
+                    essential health information.</span
+                  >
+                  <span class="lang-bn"
+                    >ঐতিহ্যবাহী স্বাস্থ্য অ্যাপ পড়ার প্রয়োজন। বয়স্ক এবং কম
+                    সাক্ষরতাসম্পন্ন ব্যবহারকারীদের জন্য, এটি প্রয়োজনীয়
+                    স্বাস্থ্য তথ্য অ্যাক্সেস করতে একটি বাধা তৈরি করে।</span
+                  >
+                </p>
+              </div>
+
+              <p>
+                <span class="lang-en"
+                  >Our voice-first health assistant breaks this barrier. Users
+                  can simply speak their health questions in their native
+                  language and get immediate voice responses.</span
+                >
+                <span class="lang-bn"
+                  >আমাদের ভয়েস-ফার্স্ট স্বাস্থ্য সহকারী এই বাধা ভাঙে।
+                  ব্যবহারকারীরা কেবল তাদের স্বাস্থ্য প্রশ্নগুলি তাদের স্থানীয়
+                  ভাষায় বলতে পারে এবং তাত্ক্ষণিক ভয়েস প্রতিক্রিয়া পেতে
+                  পারে।</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="commands-section">
+          <h3>
+            <span class="lang-en">Voice Commands Examples</span>
+            <span class="lang-bn">ভয়েস কমান্ডের উদাহরণ</span>
+          </h3>
+          <div class="commands-grid">
+            <div class="command-card">
+              <div class="command-icon">
+                <i class="fas fa-heartbeat"></i>
+              </div>
+              <div class="command-bn">স্বাস্থ্য তথ্য দেখাও</div>
+              <div class="command-en">"Show health information"</div>
+              <div class="command-description">
+                <span class="lang-en"
+                  >Get general health tips and information</span
+                >
+                <span class="lang-bn"
+                  >সাধারণ স্বাস্থ্য পরামর্শ এবং তথ্য পান</span
+                >
+              </div>
+            </div>
+
+            <div class="command-card">
+              <div class="command-icon">
+                <i class="fas fa-hospital"></i>
+              </div>
+              <div class="command-bn">নিকটস্থ হাসপাতাল খুঁজুন</div>
+              <div class="command-en">"Find nearest hospital"</div>
+              <div class="command-description">
+                <span class="lang-en">Locate nearby healthcare facilities</span>
+                <span class="lang-bn"
+                  >কাছাকাছি স্বাস্থ্যসেবা সুবিধা খুঁজুন</span
+                >
+              </div>
+            </div>
+
+            <div class="command-card">
+              <div class="command-icon">
+                <i class="fas fa-pills"></i>
+              </div>
+              <div class="command-bn">ওষুধের তথ্য বলুন</div>
+              <div class="command-en">"Tell me about medicine"</div>
+              <div class="command-description">
+                <span class="lang-en">Get information about medications</span>
+                <span class="lang-bn">ওষুধ সম্পর্কে তথ্য পান</span>
+              </div>
+            </div>
+
+            <div class="command-card">
+              <div class="command-icon">
+                <i class="fas fa-baby"></i>
+              </div>
+              <div class="command-bn">টিকার সময়সূচী</div>
+              <div class="command-en">"Vaccination schedule"</div>
+              <div class="command-description">
+                <span class="lang-en">Get child vaccination information</span>
+                <span class="lang-bn">শিশু টিকাদান তথ্য পান</span>
+              </div>
+            </div>
+
+            <div class="command-card">
+              <div class="command-icon">
+                <i class="fas fa-thermometer"></i>
+              </div>
+              <div class="command-bn">জ্বরের লক্ষণ</div>
+              <div class="command-en">"Fever symptoms"</div>
+              <div class="command-description">
+                <span class="lang-en">Learn about fever symptoms and care</span>
+                <span class="lang-bn"
+                  >জ্বরের লক্ষণ এবং যত্ন সম্পর্কে জানুন</span
+                >
+              </div>
+            </div>
+
+            <div class="command-card">
+              <div class="command-icon">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div class="command-bn">জরুরি নম্বর</div>
+              <div class="command-en">"Emergency numbers"</div>
+              <div class="command-description">
+                <span class="lang-en">Get emergency contact numbers</span>
+                <span class="lang-bn">জরুরি যোগাযোগ নম্বর পান</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="innovation-section">
+          <h3>
+            <span class="lang-en">4 Key Innovations</span>
+            <span class="lang-bn">৪টি মূল উদ্ভাবন</span>
+          </h3>
+          <div class="innovation-grid">
+            <div class="innovation-card">
+              <i class="fas fa-code"></i>
+              <h4>
+                <span class="lang-en">Browser Voice API</span>
+                <span class="lang-bn">ব্রাউজার ভয়েস API</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >Uses built-in browser voice recognition for accurate Bengali
+                  and English speech processing without additional apps</span
+                >
+                <span class="lang-bn"
+                  >অতিরিক্ত অ্যাপ ছাড়াই সঠিক বাংলা এবং ইংরেজি স্পিচ
+                  প্রসেসিংয়ের জন্য অন্তর্নির্মিত ব্রাউজার ভয়েস রিকগনিশন
+                  ব্যবহার করে</span
+                >
+              </p>
+            </div>
+
+            <div class="innovation-card">
+              <i class="fas fa-globe-asia"></i>
+              <h4>
+                <span class="lang-en">Cultural Adaptation</span>
+                <span class="lang-bn">সাংস্কৃতিক অভিযোজন</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >Understands local dialects, health beliefs, and cultural
+                  context for better communication</span
+                >
+                <span class="lang-bn"
+                  >আরও ভালো যোগাযোগের জন্য স্থানীয় উপভাষা, স্বাস্থ্য বিশ্বাস
+                  এবং সাংস্কৃতিক প্রেক্ষাপট বোঝে</span
+                >
+              </p>
+            </div>
+
+            <div class="innovation-card">
+              <i class="fas fa-book-open"></i>
+              <h4>
+                <span class="lang-en">Literacy Barrier Solution</span>
+                <span class="lang-bn">সাক্ষরতা বাধা সমাধান</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >Complete voice-based interface eliminates need for reading or
+                  writing skills</span
+                >
+                <span class="lang-bn"
+                  >সম্পূর্ণ ভয়েস-ভিত্তিক ইন্টারফেস পড়া বা লেখার দক্ষতার
+                  প্রয়োজনীয়তা দূর করে</span
+                >
+              </p>
+            </div>
+
+            <div class="innovation-card">
+              <i class="fas fa-wifi-slash"></i>
+              <h4>
+                <span class="lang-en">Offline Working</span>
+                <span class="lang-bn">অফলাইন কাজ করে</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >Essential health information available even without internet
+                  connection</span
+                >
+                <span class="lang-bn"
+                  >ইন্টারনেট সংযোগ ছাড়াও প্রয়োজনীয় স্বাস্থ্য তথ্য
+                  উপলব্ধ</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="features-section">
+          <h3>
+            <span class="lang-en">Key Features</span>
+            <span class="lang-bn">মূল বৈশিষ্ট্য</span>
+          </h3>
+          <div class="features-grid">
+            <div class="feature-card">
+              <i class="fas fa-language"></i>
+              <h4>
+                <span class="lang-en">Multi-Language Support</span>
+                <span class="lang-bn">বহু-ভাষা সমর্থন</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >Supports Bengali, English, and local dialects</span
+                >
+                <span class="lang-bn"
+                  >বাংলা, ইংরেজি এবং স্থানীয় উপভাষা সমর্থন করে</span
+                >
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <i class="fas fa-user-friends"></i>
+              <h4>
+                <span class="lang-en">Elderly Friendly</span>
+                <span class="lang-bn">বয়স্ক-বান্ধব</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >Simple interface designed for senior citizens</span
+                >
+                <span class="lang-bn"
+                  >বয়স্ক নাগরিকদের জন্য ডিজাইন করা সহজ ইন্টারফেস</span
+                >
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <i class="fas fa-microphone-alt"></i>
+              <h4>
+                <span class="lang-en">Natural Conversation</span>
+                <span class="lang-bn">স্বাভাবিক কথোপকথন</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >Talk naturally like speaking to a healthcare worker</span
+                >
+                <span class="lang-bn"
+                  >স্বাস্থ্যকর্মীর সাথে কথা বলার মতো স্বাভাবিকভাবে কথা
+                  বলুন</span
+                >
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <i class="fas fa-shield-alt"></i>
+              <h4>
+                <span class="lang-en">Privacy Protected</span>
+                <span class="lang-bn">গোপনীয়তা সুরক্ষিত</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >Your health questions remain private and secure</span
+                >
+                <span class="lang-bn"
+                  >আপনার স্বাস্থ্য প্রশ্নগুলি ব্যক্তিগত এবং সুরক্ষিত থাকে</span
+                >
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <i class="fas fa-download"></i>
+              <h4>
+                <span class="lang-en">Offline Content</span>
+                <span class="lang-bn">অফলাইন কন্টেন্ট</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >Download health information for offline access</span
+                >
+                <span class="lang-bn"
+                  >অফলাইন অ্যাক্সেসের জন্য স্বাস্থ্য তথ্য ডাউনলোড করুন</span
+                >
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <i class="fas fa-volume-up"></i>
+              <h4>
+                <span class="lang-en">Clear Audio</span>
+                <span class="lang-bn">স্পষ্ট অডিও</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >High-quality voice responses in local accents</span
+                >
+                <span class="lang-bn"
+                  >স্থানীয় উচ্চারণে উচ্চমানের ভয়েস প্রতিক্রিয়া</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="impact-section">
+          <h3>
+            <span class="lang-en">Innovation Impact</span>
+            <span class="lang-bn">উদ্ভাবনের প্রভাব</span>
+          </h3>
+          <p>
+            <span class="lang-en"
+              >Transforming healthcare access for millions who cannot read</span
+            >
+            <span class="lang-bn"
+              >যারা পড়তে পারে না তাদের জন্য স্বাস্থ্যসেবা অ্যাক্সেস রূপান্তর
+              করা</span
+            >
+          </p>
+
+          <div class="impact-stats">
+            <div class="stat-item">
+              <div class="stat-number">26%</div>
+              <div class="stat-label">
+                <span class="lang-en"
+                  >Bangladesh Adult Literacy Rate Challenge</span
+                >
+                <span class="lang-bn"
+                  >বাংলাদেশ প্রাপ্তবয়স্ক সাক্ষরতার হার চ্যালেঞ্জ</span
+                >
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-number">10M+</div>
+              <div class="stat-label">
+                <span class="lang-en">Rural Users Can Benefit</span>
+                <span class="lang-bn"
+                  >গ্রামীণ ব্যবহারকারীরা উপকৃতি পেতে পারে</span
+                >
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-number">95%</div>
+              <div class="stat-label">
+                <span class="lang-en">Voice Recognition Accuracy</span>
+                <span class="lang-bn">ভয়েস রিকগনিশন নির্ভুলতা</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="try-now-section">
+          <h3>
+            <span class="lang-en">Ready to Try Voice Assistant?</span>
+            <span class="lang-bn">ভয়েস সহকারী চেষ্টা করার জন্য প্রস্তুত?</span>
+          </h3>
+          <p>
+            <span class="lang-en"
+              >Join thousands of rural Bangladeshis already using voice
+              technology for better health access</span
+            >
+            <span class="lang-bn"
+              >আরও ভালো স্বাস্থ্য অ্যাক্সেসের জন্য ভয়েস প্রযুক্তি ব্যবহার করা
+              হাজার হাজার গ্রামীণ বাংলাদেশীদের সাথে যোগ দিন</span
+            >
+          </p>
+          <button class="try-button">
+            <i class="fas fa-microphone"></i>
+            <span class="lang-en">Start Voice Assistant</span>
+            <span class="lang-bn">ভয়েস সহকারী শুরু করুন</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>
+          <span class="lang-en"
+            >© 2023 ShasthoSheba - Voice-First Health Assistant for Rural
+            Bangladesh | SDG 3 - Innovation & Fair Access</span
+          >
+          <span class="lang-bn"
+            >© ২০২৩ শাস্ত্রোশেবা - গ্রামীণ বাংলাদেশের জন্য ভয়েস-ফার্স্ট
+            স্বাস্থ্য সহকারী | এসডিজি ৩ - উদ্ভাবন ও ন্যায্য প্রবেশাধিকার</span
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

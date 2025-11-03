@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission 1: Mental Health Check-In</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hind Siliguri', 'Open Sans', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #4a6da7;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 18px;
+        }
+        
+        nav ul li a:hover {
+            color: #8db5e0;
+        }
+        
+        .mission-header {
+            background-color: #4a6da7;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        
+        .mission-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .mission-header p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            display: flex;
+            margin-top: 40px;
+            gap: 30px;
+        }
+        
+        .reality-check {
+            flex: 1;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .reality-check h2 {
+            color: #4a6da7;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .reality-check h2 i {
+            margin-right: 10px;
+            color: #7cb342;
+        }
+        
+        .reality-check-content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #7cb342;
+        }
+        
+        .reality-check-content p {
+            margin-bottom: 15px;
+            font-style: italic;
+            font-size: 16px;
+        }
+        
+        .reality-check-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .check-in-form {
+            flex: 1;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .check-in-form h2 {
+            color: #4a6da7;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .check-in-form h2 i {
+            margin-right: 10px;
+            color: #7cb342;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+            font-size: 18px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 18px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .mood-selector {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .mood-option {
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            width: 18%;
+            margin-bottom: 10px;
+        }
+        
+        .mood-option:hover {
+            transform: scale(1.05);
+            background-color: #f5f7fa;
+            border-color: #7cb342;
+        }
+        
+        .mood-option input[type="radio"] {
+            display: none;
+        }
+        
+        .mood-option i {
+            font-size: 32px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .mood-option p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .range-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .range-value {
+            font-weight: bold;
+            color: #4a6da7;
+            min-width: 30px;
+            font-size: 18px;
+        }
+        
+        .submit-btn {
+            background-color: #7cb342;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #689f38;
+        }
+        
+        .challenges {
+            margin-top: 40px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .challenges h2 {
+            color: #4a6da7;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .challenge-cards {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        
+        .challenge-card {
+            flex: 1;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .challenge-card i {
+            font-size: 40px;
+            color: #4a6da7;
+            margin-bottom: 15px;
+        }
+        
+        .challenge-card h3 {
+            color: #4a6da7;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .challenge-card p {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .bengali-text {
+            font-weight: bold;
+            color: #ff7043;
+            margin: 8px 0;
+            font-size: 18px;
+        }
+        
+        .help-text {
+            background-color: #e8f5e9;
+            border-left: 4px solid #7cb342;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .help-text i {
+            color: #7cb342;
+            margin-right: 10px;
+        }
+        
+        footer {
+            margin-top: 40px;
+            background-color: #333;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            padding: 0 15px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        
+        .footer-section ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        .language-toggle {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .bengali {
+            display: none;
+        }
+        
+        .english {
+            display: block;
+        }
+        
+        @media (max-width: 992px) {
+            .content-section {
+                flex-direction: column;
+            }
+            
+            .challenge-cards {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .mood-selector {
+                justify-content: center;
+            }
+            
+            .mood-option {
+                width: 30%;
+                margin: 5px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-section {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <span class="english">MindBridge</span>
+                <span class="bengali">মাইন্ডব্রিজ</span>
+            </div>
+           
+            <nav>
+                <ul>
+                    <li><a href="index.html">
+                        <span class="english">Home</span>
+                        <span class="bengali">হোম</span>
+                    </a></li>
+                    <li><a href="missions.html">
+                        <span class="english">Missions</span>
+                        <span class="bengali">মিশন</span>
+                    </a></li>
+                    <li><a href="resources.html">
+                        <span class="english">Resources</span>
+                        <span class="bengali">সম্পদ</span>
+                    </a></li>
+                    <li><a href="about.html">
+                        <span class="english">About</span>
+                        <span class="bengali">আমাদের সম্পর্কে</span>
+                    </a></li>
+                    <li> <button class="language-toggle" onclick="toggleLanguage()">
+                <span class="english">বাংলা</span>
+                <span class="bengali">English</span>
+            </button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="mission-header">
+            <h1>
+                <span class="english">Mental Health Check-In</span>
+                <span class="bengali">মানসিক স্বাস্থ্য পরীক্ষা</span>
+            </h1>
+            <p>
+                <span class="english">Assess your mental wellbeing and get personalized support</span>
+                <span class="bengali">আপনার মানসিক সুস্থতা মূল্যায়ন করুন এবং ব্যক্তিগত সহায়তা পান</span>
+            </p>
+        </div>
+
+        <div class="content-section">
+            <div class="reality-check">
+                <h2>
+                    <i class="fas fa-user-circle"></i>
+                    <span class="english">Hablu's Reality Check</span>
+                    <span class="bengali">হাবলুর বাস্তবতা পরীক্ষা</span>
+                </h2>
+                <div class="reality-check-content">
+                    <p>
+                        <span class="english">"I thought my constant worry and sleepless nights were just part of being a good student. I didn't realize I was struggling with anxiety until it became unbearable."</span>
+                        <span class="bengali">"আমি ভেবেছিলাম আমার ক্রমাগত উদ্বেগ এবং ঘুমহীন রাত্রিগুলি কেবল একজন ভালো ছাত্র হওয়ার অংশ। আমি বুঝতে পারিনি যে আমি উদ্বেগের সাথে লড়াই করছি যতক্ষণ না এটি অসহনীয় হয়ে ওঠে।"</span>
+                    </p>
+                    <p>
+                        <span class="english">"The pressure to perform well academically was immense. Every exam felt like a life-or-death situation. My heart would race, my hands would shake, and I couldn't focus on anything except the fear of failure."</span>
+                        <span class="bengali">"একাডেমিকভাবে ভালো করার চাপ ছিল অপরিসীম। প্রতিটি পরীক্ষা মনে হতো জীবন-মৃত্যুর পরিস্থিতি। আমার হৃদস্পন্দন বেড়ে যেত, আমার হাত কাঁপত, এবং আমি ব্যর্থতার ভয় ছাড়া অন্য কিছুতে মনোযোগ দিতে পারতাম না।"</span>
+                    </p>
+                    <p>
+                        <span class="english">"It wasn't until a visiting doctor came to our community clinic that I learned about anxiety disorders. She explained that what I was experiencing was a medical condition, not a personal weakness."</span>
+                        <span class="bengali">"যতক্ষণ না একজন পরিদর্শক ডাক্তার আমাদের সম্প্রদায় ক্লিনিকে আসেন, ততক্ষণ আমি উদ্বেগ ব্যাধি সম্পর্কে জানতে পারিনি। তিনি ব্যাখ্যা করেছিলেন যে আমি যা অনুভব করছি তা একটি চিকিৎসা অবস্থা, ব্যক্তিগত দুর্বলতা নয়।"</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="check-in-form">
+                <h2>
+                    <i class="fas fa-clipboard-check"></i>
+                    <span class="english">Mental Health Check-In</span>
+                    <span class="bengali">মানসিক স্বাস্থ্য পরীক্ষা</span>
+                </h2>
+                <form action="submit-checkin.html" method="post">
+                    <div class="help-text">
+                        <i class="fas fa-info-circle"></i>
+                        <span class="english">Your information is private and will only be used to provide you with appropriate support.</span>
+                        <span class="bengali">আপনার তথ্য ব্যক্তিগত এবং শুধুমাত্র আপনাকে উপযুক্ত সহায়তা প্রদান করতে ব্যবহৃত হবে।</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name">
+                            <span class="english">Your Name</span>
+                            <span class="bengali">আপনার নাম</span>
+                        </label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">
+                            <span class="english">Age</span>
+                            <span class="bengali">বয়স</span>
+                        </label>
+                        <input type="number" id="age" name="age" min="10" max="100" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">
+                            <span class="english">Your Location (District)</span>
+                            <span class="bengali">আপনার অবস্থান (জেলা)</span>
+                        </label>
+                        <select id="location" name="location" required>
+                            <option value="">
+                                <span class="english">Select your district</span>
+                                <span class="bengali">আপনার জেলা নির্বাচন করুন</span>
+                            </option>
+                            <option value="dhaka">
+                                <span class="english">Dhaka</span>
+                                <span class="bengali">ঢাকা</span>
+                            </option>
+                            <option value="chittagong">
+                                <span class="english">Chittagong</span>
+                                <span class="bengali">চট্টগ্রাম</span>
+                            </option>
+                            <option value="khulna">
+                                <span class="english">Khulna</span>
+                                <span class="bengali">খুলনা</span>
+                            </option>
+                            <option value="rajshahi">
+                                <span class="english">Rajshahi</span>
+                                <span class="bengali">রাজশাহী</span>
+                            </option>
+                            <option value="sylhet">
+                                <span class="english">Sylhet</span>
+                                <span class="bengali">সিলেট</span>
+                            </option>
+                            <option value="barisal">
+                                <span class="english">Barisal</span>
+                                <span class="bengali">বরিশাল</span>
+                            </option>
+                            <option value="rangpur">
+                                <span class="english">Rangpur</span>
+                                <span class="bengali">রংপুর</span>
+                            </option>
+                            <option value="mymensingh">
+                                <span class="english">Mymensingh</span>
+                                <span class="bengali">ময়মনসিংহ</span>
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <span class="english">How are you feeling today?</span>
+                            <span class="bengali">আপনি আজ কেমন অনুভব করছেন?</span>
+                        </label>
+                        <div class="mood-selector">
+                            <div class="mood-option">
+                                <input type="radio" name="mood" value="very-sad" id="mood-very-sad" required>
+                                <label for="mood-very-sad">
+                                    <i class="fas fa-sad-tear" style="color: #d32f2f;"></i>
+                                    <p>
+                                        <span class="english">Very Sad</span>
+                                        <span class="bengali">খুব দুঃখিত</span>
+                                    </p>
+                                </label>
+                            </div>
+                            <div class="mood-option">
+                                <input type="radio" name="mood" value="sad" id="mood-sad">
+                                <label for="mood-sad">
+                                    <i class="fas fa-frown" style="color: #f57c00;"></i>
+                                    <p>
+                                        <span class="english">Sad</span>
+                                        <span class="bengali">দুঃখিত</span>
+                                    </p>
+                                </label>
+                            </div>
+                            <div class="mood-option">
+                                <input type="radio" name="mood" value="neutral" id="mood-neutral">
+                                <label for="mood-neutral">
+                                    <i class="fas fa-meh" style="color: #fbc02d;"></i>
+                                    <p>
+                                        <span class="english">Neutral</span>
+                                        <span class="bengali">সাধারণ</span>
+                                    </p>
+                                </label>
+                            </div>
+                            <div class="mood-option">
+                                <input type="radio" name="mood" value="happy" id="mood-happy">
+                                <label for="mood-happy">
+                                    <i class="fas fa-smile" style="color: #689f38;"></i>
+                                    <p>
+                                        <span class="english">Happy</span>
+                                        <span class="bengali">খুশি</span>
+                                    </p>
+                                </label>
+                            </div>
+                            <div class="mood-option">
+                                <input type="radio" name="mood" value="very-happy" id="mood-very-happy">
+                                <label for="mood-very-happy">
+                                    <i class="fas fa-laugh-beam" style="color: #388e3c;"></i>
+                                    <p>
+                                        <span class="english">Very Happy</span>
+                                        <span class="bengali">খুব খুশি</span>
+                                    </p>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sleep">
+                            <span class="english">How would you rate your sleep quality last night? (1-10)</span>
+                            <span class="bengali">আপনি গতরাতের ঘুমের মান কত হিসাবে দেবেন? (১-১০)</span>
+                        </label>
+                        <div class="range-container">
+                            <input type="range" id="sleep" name="sleep" min="1" max="10" value="5">
+                            <span class="range-value">5</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="anxiety">
+                            <span class="english">Have you experienced anxiety symptoms in the past week?</span>
+                            <span class="bengali">গত সপ্তাহে আপনি কি উদ্বেগের লক্ষণগুলি অনুভব করেছেন?</span>
+                        </label>
+                        <select id="anxiety" name="anxiety" required>
+                            <option value="">
+                                <span class="english">Select an option</span>
+                                <span class="bengali">একটি বিকল্প নির্বাচন করুন</span>
+                            </option>
+                            <option value="none">
+                                <span class="english">None</span>
+                                <span class="bengali">কোনটিই নয়</span>
+                            </option>
+                            <option value="mild">
+                                <span class="english">Mild</span>
+                                <span class="bengali">হালকা</span>
+                            </option>
+                            <option value="moderate">
+                                <span class="english">Moderate</span>
+                                <span class="bengali">মাঝারি</span>
+                            </option>
+                            <option value="severe">
+                                <span class="english">Severe</span>
+                                <span class="bengali">গুরুতর</span>
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stress">
+                            <span class="english">What has been causing you stress lately? (Optional)</span>
+                            <span class="bengali">সম্প্রতি কী আপনাকে চাপ দিচ্ছে? (ঐচ্ছিক)</span>
+                        </label>
+                        <textarea id="stress" name="stress" placeholder="
+                            <span class="english">Feel free to share what's been on your mind...</span>
+                            <span class="bengali">আপনার মনে যা আসছে তা ভাগ করতে স্বাচ্ছন্দ্য বোধ করুন...</span>
+                        "></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="support">
+                            <span class="english">Would you like to be connected with a mental health professional?</span>
+                            <span class="bengali">আপনি কি একজন মানসিক স্বাস্থ্য পেশাদারের সাথে যুক্ত হতে চান?</span>
+                        </label>
+                        <select id="support" name="support" required>
+                            <option value="">
+                                <span class="english">Select an option</span>
+                                <span class="bengali">একটি বিকল্প নির্বাচন করুন</span>
+                            </option>
+                            <option value="yes">
+                                <span class="english">Yes, I would like to speak with someone</span>
+                                <span class="bengali">হ্যাঁ, আমি কারও সাথে কথা বলতে চাই</span>
+                            </option>
+                            <option value="maybe">
+                                <span class="english">Maybe, I'd like more information first</span>
+                                <span class="bengali">হয়তো, আমি আগে আরও তথ্য চাই</span>
+                            </option>
+                            <option value="no">
+                                <span class="english">No, thank you</span>
+                                <span class="bengali">না, ধন্যবাদ</span>
+                            </option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span class="english">Submit Check-In</span>
+                        <span class="bengali">পরীক্ষা জমা দিন</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="challenges">
+            <h2>
+                <span class="english">The Challenge (And Why You Should Care)</span>
+                <span class="bengali">চ্যালেঞ্জ (এবং কেন আপনার এটি যত্ন করা উচিত)</span>
+            </h2>
+            <div class="challenge-cards">
+                <div class="challenge-card">
+                    <i class="fas fa-users"></i>
+                    <h3>
+                        <span class="english">Stigma</span>
+                        <span class="bengali">কলঙ্ক</span>
+                    </h3>
+                    <p class="bengali-text">"পরিবারে এটি কী?"</p>
+                    <p>
+                        <span class="english">"What will the neighbors say?"</span>
+                        <span class="bengali">"প্রতিবেশীরা কি বলবে?"</span>
+                    </p>
+                    <p>
+                        <span class="english">Mental health conditions are often misunderstood in rural communities, leading to social isolation and discrimination.</span>
+                        <span class="bengali">গ্রামীণ সম্প্রদায়ে মানসিক স্বাস্থ্য অবস্থাগুলি প্রায়শই ভুল বোঝা হয়, যার ফলে সামাজিক বিচ্ছিন্নতা এবং বৈষম্য হয়।</span>
+                    </p>
+                </div>
+                <div class="challenge-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>
+                        <span class="english">Access</span>
+                        <span class="bengali">প্রবেশাধিকার</span>
+                    </h3>
+                    <p>
+                        <span class="english">The nearest psychiatric hospital is 80km away</span>
+                        <span class="bengali">নিকটতম মানসিক হাসপাতাল 80 কিমি দূরে</span>
+                    </p>
+                    <p>
+                        <span class="english">Limited transportation options and long distances make it nearly impossible for rural residents to access specialized mental healthcare.</span>
+                        <span class="bengali">সীমিত পরিবহন বিকল্প এবং দীর্ঘ দূরত্ব গ্রামীণ বাসিন্দাদের জন্য বিশেষায়িত মানসিক স্বাস্থ্যসেবা পেতে প্রায় অসম্ভব করে তোলে।</span>
+                    </p>
+                </div>
+                <div class="challenge-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>
+                        <span class="english">Awareness</span>
+                        <span class="bengali">সচেতনতা</span>
+                    </h3>
+                    <p>
+                        <span class="english">Many don't know anxiety is a disease, not a personality flaw</span>
+                        <span class="bengali">অনেকেই জানেন না যে উদ্বেগ একটি রোগ, ব্যক্তিত্বের ত্রুটি নয়</span>
+                    </p>
+                    <p>
+                        <span class="english">Lack of education about mental health leads to misconceptions and prevents people from recognizing symptoms.</span>
+                        <span class="bengali">মানসিক স্বাস্থ্য সম্পর্কে শিক্ষার অভাব ভুল ধারণার সৃষ্টি করে এবং লোকেদের লক্ষণগুলি চিনতে বাধা দেয়।</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>
+                    <span class="english">About MindBridge</span>
+                    <span class="bengali">মাইন্ডব্রিজ সম্পর্কে</span>
+                </h3>
+                <p>
+                    <span class="english">We're dedicated to bridging the mental healthcare gap in rural Bangladesh through technology and community engagement.</span>
+                    <span class="bengali">আমরা প্রযুক্তি এবং সম্প্রদায়ের সম্পৃক্ততার মাধ্যমে গ্রামীণ বাংলাদেশে মানসিক স্বাস্থ্যসেবা ব্যবধান পূরণের জন্য নিবেদিত।</span>
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>
+                    <span class="english">Quick Links</span>
+                    <span class="bengali">দ্রুত লিঙ্ক</span>
+                </h3>
+                <ul>
+                    <li><a href="index.html">
+                        <span class="english">Home</span>
+                        <span class="bengali">হোম</span>
+                    </a></li>
+                    <li><a href="mission1.html">
+                        <span class="english">Mental Health Check-In</span>
+                        <span class="bengali">মানসিক স্বাস্থ্য পরীক্ষা</span>
+                    </a></li>
+                    <li><a href="resources.html">
+                        <span class="english">Resources</span>
+                        <span class="bengali">সম্পদ</span>
+                    </a></li>
+                    <li><a href="get-involved.html">
+                        <span class="english">Get Involved</span>
+                        <span class="bengali">জড়িত হোন</span>
+                    </a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>
+                    <span class="english">Contact Us</span>
+                    <span class="bengali">যোগাযোগ করুন</span>
+                </h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> info@mindbridge.org</li>
+                    <li><i class="fas fa-phone"></i> +880 1234 567890</li>
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span class="english">Dhaka, Bangladesh</span>
+                        <span class="bengali">ঢাকা, বাংলাদেশ</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>
+                &copy; 2023 MindBridge.
+                <span class="english">All rights reserved.</span>
+                <span class="bengali">সর্বস্বত্ব সংরক্ষিত।</span>
+                <span class="english">Hackathon Project</span>
+                <span class="bengali">হ্যাকাথন প্রকল্প</span>
+            </p>
+        </div>
+    </footer>
+    <script>
+function toggleLanguage() {
+    const englishTexts = document.querySelectorAll('.english');
+    const bengaliTexts = document.querySelectorAll('.bengali');
+
+    // Check current state
+    const isEnglish = englishTexts[0].style.display !== 'none';
+
+    if (isEnglish) {
+        // Hide English, show Bengali
+        englishTexts.forEach(el => el.style.display = 'none');
+        bengaliTexts.forEach(el => el.style.display = 'inline');
+    } else {
+        // Show English, hide Bengali
+        englishTexts.forEach(el => el.style.display = 'inline');
+        bengaliTexts.forEach(el => el.style.display = 'none');
+    }
+}
+</script>
+
+</body>
+</html>

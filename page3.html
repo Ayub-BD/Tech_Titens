@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mission 3: Anonymous Help Request | MonBondhu</title>
+    <style>
+      /* Basic Reset & Mobile-First Design */
+      body {
+        font-family: "SolaimanLipi", "Noto Sans Bengali", "Segoe UI", Tahoma,
+          Geneva, Verdana, sans-serif;
+        background-color: #f0f8ff; /* Light, calming blue */
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .container {
+        max-width: 500px;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        text-align: center;
+      }
+
+      h1 {
+        color: #0056b3;
+        font-size: 1.8em;
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        font-size: 1.1em;
+        color: #555;
+        margin-bottom: 25px;
+      }
+
+      .privacy-notice {
+        background-color: #e7f3ff;
+        border-left: 5px solid #0056b3;
+        padding: 15px;
+        margin-bottom: 25px;
+        text-align: left;
+        font-size: 0.95em;
+        border-radius: 5px;
+      }
+
+      .privacy-notice strong {
+        color: #0056b3;
+      }
+
+      .form-section form {
+        text-align: left;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 8px;
+        font-size: 1.05em;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1em;
+        font-family: inherit;
+        min-height: 120px;
+        box-sizing: border-box; /* Important for padding */
+      }
+
+      .radio-group label {
+        font-weight: normal;
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s, border-color 0.2s;
+      }
+
+      .radio-group label:hover {
+        background-color: #f9f9f9;
+        border-color: #0056b3;
+      }
+
+      .radio-group input[type="radio"] {
+        margin-right: 12px;
+      }
+
+      .offline-notice {
+        background-color: #fffbe6;
+        border: 1px solid #ffe58f;
+        padding: 15px;
+        margin: 25px 0;
+        border-radius: 8px;
+        font-size: 0.9em;
+        text-align: center;
+      }
+
+      /* This is the magic 'submit' button. It's a label for a hidden radio button. */
+      .submit-btn {
+        display: block; /* Changed to block for full width */
+        width: 100%;
+        padding: 15px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.2em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-align: center;
+      }
+
+      .submit-btn:hover {
+        background-color: #218838;
+      }
+
+      /* --- Confirmation Page Styles --- */
+      .confirmation-section {
+        display: none; /* Hidden by default */
+      }
+
+      .success-icon {
+        font-size: 4em;
+        color: #28a745;
+        margin-bottom: 20px;
+      }
+
+      .reassurance {
+        font-size: 1.1em;
+        color: #555;
+        margin-bottom: 30px;
+      }
+
+      .next-steps {
+        background-color: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: left;
+        margin-bottom: 30px;
+      }
+
+      .next-steps h2 {
+        margin-top: 0;
+        color: #333;
+        font-size: 1.3em;
+      }
+
+      .next-steps ol {
+        padding-left: 20px;
+      }
+
+      .next-steps li {
+        margin-bottom: 12px;
+      }
+
+      .home-btn {
+        display: inline-block;
+        padding: 15px 30px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 1.1em;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+
+      .home-btn:hover {
+        background-color: #0056b3;
+      }
+
+      /* --- The No-JS Page Toggle Logic --- */
+      /* This hidden radio button controls which section is visible */
+      #page-toggle {
+        display: none;
+      }
+
+      /* When the radio button is checked (by clicking the submit label)... */
+      #page-toggle:checked ~ .container .form-section {
+        display: none; /* ...hide the form section. */
+      }
+
+      #page-toggle:checked ~ .container .confirmation-section {
+        display: block; /* ...and show the confirmation section. */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- This hidden radio button is the key to switching views without JavaScript -->
+    <input type="radio" id="page-toggle" name="view-state" hidden />
+
+    <div class="container">
+      <!-- =================== FORM SECTION =================== -->
+      <section class="form-section">
+        <h1>
+          গোপনীয় সাহায্যের অনুরোধ<br /><small>(Anonymous Help Request)</small>
+        </h1>
+        <p class="subtitle">
+          আপনি একা নন। আমরা আপনার পাশে আছি।<br /><small
+            >(You are not alone. We are here for you.)</small
+          >
+        </p>
+
+        <div class="privacy-notice">
+          <strong
+            >আপনার গোপনীয়তা আমাদের কাছে সবচেয়ে গুরুত্বপূর্ণ।<br /><small
+              >(Your privacy is our top priority.)</small
+            ></strong
+          ><br />
+          এই ফর্মটি সম্পূর্ণ বেনামে। আমরা আপনার নাম, পরিচয় বা কোনো ব্যক্তিগত
+          তথ্য জানতে চাই না।<br />
+          <small
+            >(This form is completely anonymous. We do not ask for your name,
+            identity, or any personal information.)</small
+          >
+        </div>
+
+        <!-- The form action is removed as this is a prototype. The submit button is a label. -->
+        <form>
+          <div class="form-group">
+            <label for="help-message"
+              >আপনি কী নিয়ে কথা বলতে চান? (ঐচ্ছিক)<br /><small
+                >(What would you like to talk about? (Optional))</small
+              ></label
+            >
+            <textarea
+              id="help-message"
+              name="help_message"
+              placeholder="আপনি যা খুশি লিখতে পারেন। আপনার মনের কথা শেয়ার করুন।&#10;You can write anything you like. Share what's on your mind."
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label
+              >আপনি কীভাবে একজন কাউন্সেলরের কাছ থেকে উত্তর পেতে চান?<br /><small
+                >(How would you like to get a reply from a counselor?)</small
+              ></label
+            >
+            <div class="radio-group">
+              <label>
+                <input
+                  type="radio"
+                  name="contact_method"
+                  value="secure_chat"
+                  checked
+                />
+                একটি নিরাপদ ও বেনামী চ্যাট লিঙ্ক পাঠান<br /><small
+                  >(Send a secure and anonymous chat link)</small
+                >
+              </label>
+              <label>
+                <input type="radio" name="contact_method" value="callback" />
+                একটি এককালীন ফোন কল করুন (আপনার নম্বর লুকানো থাকবে)<br /><small
+                  >(Make a one-time phone call (your number will be
+                  hidden))</small
+                >
+              </label>
+              <label>
+                <input type="radio" name="contact_method" value="no_reply" />
+                আমি শুধু আমার কথাগুলো লিখে পাঠাতে চাই, উত্তরের প্রয়োজন নেই<br /><small
+                  >(I just want to write this down, no reply needed)</small
+                >
+              </label>
+            </div>
+          </div>
+
+          <div class="offline-notice">
+            <strong
+              >গুরুত্বপূর্ণ তথ্য:<br /><small
+                >(Important Information:</small
+              ></strong
+            >
+            আপনার অনুরোধ পাঠানোর জন্য ইন্টারনেট সংযোগ প্রয়োজন। যদি কোনো সংযোগ
+            না থাকে, আপনার অনুরোধটি নিরাপদে সংরক্ষিত হবে এবং সংযোগ পাওয়া মাত্র
+            পাঠানো হবে।<br />
+            <small
+              >(An internet connection is needed to send your request. If there
+              is no connection, your request will be saved securely and sent as
+              soon as a connection is available.)</small
+            >
+          </div>
+
+          <label for="page-toggle" class="submit-btn">
+            নিরাপদে অনুরোধ পাঠান<br /><small>(Send Request Safely)</small>
+          </label>
+        </form>
+      </section>
+
+      <section class="confirmation-section">
+        <div class="success-icon">✓</div>
+
+        <h1>
+          আপনার অনুরোধ গৃহীত হয়েছে<br /><small
+            >(Your Request Has Been Received)</small
+          >
+        </h1>
+
+        <p class="reassurance">
+          আপনি সঠিক সিদ্ধান্ত নিয়েছেন। সাহায্য চাওয়া একটি সাহসের ব্যাপার।<br />
+          <small
+            >(You have made the right decision. It takes courage to ask for
+            help.)</small
+          >
+        </p>
+
+        <div class="next-steps">
+          <h2>
+            পরবর্তী ধাপগুলো কী হবে?<br /><small
+              >(What are the next steps?)</small
+            >
+          </h2>
+          <ol>
+            <li>
+              <strong>বার্তা পর্যালোচনা (Message Review):</strong> একজন
+              প্রশিক্ষিত ও অভিজ্ঞ কাউন্সেলর আপনার বার্তা নিরাপদে পেয়েছেন এবং
+              সেটা পর্যালোচনা করছেন।<br /><small
+                >(A trained and experienced counselor has safely received your
+                message and is reviewing it.)</small
+              >
+            </li>
+            <li>
+              <strong>যোগাযোগ (Contact):</strong> তারা পরবর্তী
+              <strong>২৪ ঘণ্টার মধ্যে</strong> আপনার পছন্দসই পদ্ধতিতে যোগাযোগ
+              করবেন।<br /><small
+                >(They will contact you within the next
+                <strong>24 hours</strong> using your preferred method.)</small
+              >
+            </li>
+            <li>
+              <strong>গোপনীয়তা রক্ষা (Privacy Protected):</strong> কথোপকথনের
+              সময়ও আপনার পরিচয় গোপন রাখা হবে এবং কোনো ব্যক্তিগত প্রশ্ন করা হবে
+              না।<br /><small
+                >(Your identity will remain anonymous during the conversation,
+                and no personal questions will be asked.)</small
+              >
+            </li>
+          </ol>
+        </div>
+
+        <a href="index.html" class="home-btn"
+          >হোম পেজে ফিরে যান<br /><small>(Return to Home Page)</small></a
+        >
+        <!-- The link "#" is a placeholder for the main page later. -->
+      </section>
+    </div>
+  </body>
+</html>

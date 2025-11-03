@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="Community Health Events | ShasthoSheba" data-bn="সম্প্রদায় স্বাস্থ্য কর্মসূচি | শাস্থোসেবা">Community Health Events | ShasthoSheba</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    
+    <style>
+        /* --- Basic Setup & Fonts --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        :root {
+            --primary-color: #2a9d8f;
+            --secondary-color: #e9c46a;
+            --accent-color: #e76f51; /* New vibrant orange for urgency */
+            --background-color: #f4f1de;
+            --text-color: #333333;
+            --light-gray: #e0e0e0;
+            --white: #ffffff;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif; /* Changed to a bolder font */
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- Background Shapes (More Angular) --- */
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -150px;
+            right: -150px;
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(42, 157, 143, 0.05), rgba(231, 111, 81, 0.05));
+            z-index: -1;
+            transform: rotate(25deg);
+            pointer-events: none;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* Diamond shape */
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -150px;
+            left: -150px;
+            width: 500px;
+            height: 500px;
+            background-color: rgba(255, 255, 255, 0.4);
+            z-index: -1;
+            pointer-events: none;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); /* Pentagon shape */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Language Toggle --- */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-switch button {
+            background-color: var(--white);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switch button.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* --- Header & Footer --- */
+        .page-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-color); /* Changed border color */
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700; /* Bolder */
+        }
+
+        .page-header p {
+            margin: 0.25rem 0 0;
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* --- Main Content --- */
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 700; /* Bolder */
+            border-bottom: 3px solid var(--accent-color); /* Thicker, new color */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center; /* Centered the text */
+        }
+
+        .reality-check {
+            background-color: #fdf8e1;
+            border-left: 5px solid var(--accent-color); /* Changed border color */
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .reality-check p {
+            margin: 0;
+        }
+
+        /* --- Attention Banner --- */
+        .attention-banner {
+            background-color: var(--accent-color);
+            color: var(--white);
+            text-align: center;
+            padding: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Event Cards (More Aggressive) --- */
+        .events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .event-card {
+            border-left: 5px solid var(--accent-color); /* Aggressive left border */
+            border-radius: 0 8px 8px 0;
+            padding: 1.5rem;
+            background-color: var(--white);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-left-width: 8px; /* Border grows on hover */
+        }
+
+        .event-card h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .event-meta {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .event-meta span {
+            margin-right: 1.5rem;
+            display: inline-block;
+        }
+        .event-meta strong {
+            color: var(--accent-color); /* Highlighting labels */
+        }
+
+        .event-description {
+            margin-bottom: 0;
+        }
+        
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Language Toggle Buttons -->
+    <div class="lang-switch">
+        <button id="lang-en" class="active">EN</button>
+        <button id="lang-bn">BN</button>
+        <button onclick="location.href='index.html'" class="back-home-btn" data-en="← Back to Home" data-bn="← হোম পেজে ফিরে যান">Home</button>
+    </div>
+
+    <header class="page-header">
+        <h1 data-en="ShasthoSheba" data-bn="শাস্থোসেবা">ShasthoSheba</h1>
+        <p data-en="Connecting you to community health" data-bn="আপনাকে সম্প্রদায় স্বাস্থ্যের সাথে যুক্ত করছে">Connecting you to community health</p>
+    </header>
+
+    <main class="container">
+        <section id="intro">
+            <h2 class="section-title" data-en="Community Health Events" data-bn="সম্প্রদায় স্বাস্থ্য কর্মসূচি">Community Health Events</h2>
+            <p data-en="Stay informed about important health events happening in your area. Never miss a free check-up, a blood donation camp, or a health seminar again." data-bn="আপনার এলাকায় হতে চলা গুরুত্বপূর্ণ স্বাস্থ্য কর্মসূচি সম্পর্কে আপডেট থাকুন। আর কখনোই বিনামূল্যে স্বাস্থ্য পরীক্ষা, রক্তদান শিবির বা স্বাস্থ্য সেমিনার মিস করবেন না।">Stay informed about important health events happening in your area. Never miss a free check-up, a blood donation camp, or a health seminar again.</p>
+        </section>
+
+        <section id="reality-check" class="reality-check">
+            <h3 data-en="Hablu's Reality Check" data-bn="হাবলুর বাস্তব অভিজ্ঞতা">Hablu's Reality Check</h3>
+            <p data-en="Rina missed the eye camp because she didn't know the date. Karim needed blood at 2 AM, but didn't know who to call. Let's make sure this doesn't happen again." data-bn="রিনা চক্ষু শিবির মিস করেছে কারণ সে তারিখ জানত না। করিমের রাত ২টোয় রক্তের প্রয়োজন ছিল, কিন্তু সে কাকে ফোন করবে জানত না। আসুন এটি যেন আর না হয়, সে ব্যবস্থা করি।">Rina missed the eye camp because she didn't know the date. Karim needed blood at 2 AM, but didn't know who to call. Let's make sure this doesn't happen again.</p>
+        </section>
+
+        <section id="events">
+            <h2 class="section-title" data-en="Upcoming Events" data-bn="আসন্ন কর্মসূচি">Upcoming Events</h2>
+            
+            <!-- NEW ATTENTION BANNER -->
+            <div class="attention-banner" data-en="Your Health Can't Wait!" data-bn="আপনার স্বাস্থ্য অপেক্ষা করে না!">
+                Your Health Can't Wait!
+            </div>
+
+            <div class="events-list">
+                <!-- Event 1 -->
+                <div class="event-card">
+                    <h3 data-en="Free Eye Camp" data-bn="বিনামূল্যে চক্ষু শিবির">Free Eye Camp</h3>
+                    <div class="event-meta">
+                        <span>📅 <strong data-en="Date:" data-bn="তারিখ:">Date:</strong> 25th March 2024</span>
+                        <span>📍 <strong data-en="Location:" data-bn="স্থান:">Location:</strong> Union Health Center, Shadipur</span>
+                    </div>
+                    <p class="event-description" data-en="Get your eyes checked for free by specialist doctors. Glasses will also be provided at a low cost." data-bn="বিশেষজ্ঞ ডাক্তারদের দ্বারা বিনামূল্যে আপনার চোখ পরীক্ষা করুন। কম খরচে চশমাও দেওয়া হবে।">Get your eyes checked for free by specialist doctors. Glasses will also be provided at a low cost.</p>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="event-card">
+                    <h3 data-en="Blood Donation Drive" data-bn="রক্তদান কর্মসূচি">Blood Donation Drive</h3>
+                    <div class="event-meta">
+                        <span>📅 <strong data-en="Date:" data-bn="তারিখ:">Date:</strong> 5th April 2024</span>
+                        <span>📍 <strong data-en="Location:" data-bn="স্থান:">Location:</strong> Shadipur High School Ground</span>
+                    </div>
+                    <p class="event-description" data-en="Your blood can save a life. Please come and donate. A small certificate and refreshments will be provided." data-bn="আপনার রক্ত একটি জীবন বাঁচাতে পারে। অনুগ্রহ করে এসে রক্ত দিন। একটি ছোট সার্টিফিকেট এবং খাবার দেওয়া হবে।">Your blood can save a life. Please come and donate. A small certificate and refreshments will be provided.</p>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="event-card">
+                    <h3 data-en="Mother & Child Health Seminar" data-bn="মা ও শিশু স্বাস্থ্য সেমিনার">Mother & Child Health Seminar</h3>
+                    <div class="event-meta">
+                        <span>📅 <strong data-en="Date:" data-bn="তারিখ:">Date:</strong> 12th April 2024</span>
+                        <span>📍 <strong data-en="Location:" data-bn="স্থান:">Location:</strong> Community Hall, Shadipur</span>
+                    </div>
+                    <p class="event-description" data-en="A special seminar for expecting and new mothers on nutrition, hygiene, and infant care." data-bn="গর্ভবতী এবং নতুন মায়েদের জন্য পুষ্টি, স্বাস্থ্যবিধি এবং শিশুর যত্ন নিয়ে একটি বিশেষ সেমিনার।">A special seminar for expecting and new mothers on nutrition, hygiene, and infant care.</p>
+                </div>
+
+                <!-- Event 4 -->
+                <div class="event-card">
+                    <h3 data-en="Yoga and Mindfulness Session" data-bn="যোগ ব্যায়াম ও মননশীলতা বিষয়ক অধিবেশন">Yoga and Mindfulness Session</h3>
+                    <div class="event-meta">
+                        <span>📅 <strong data-en="Date:" data-bn="তারিখ:">Date:</strong> Every Sunday Morning</span>
+                        <span>📍 <strong data-en="Location:" data-bn="স্থান:">Location:</strong> Shadipur River Bank</span>
+                    </div>
+                    <p class="event-description" data-en="Join us for a peaceful morning of simple yoga and meditation. It's a free class to help reduce stress and find inner calm. Everyone is welcome." data-bn="সহজ যোগব্যায়াম এবং ধ্যানের মাধ্যমে একটি শান্ত সকাল কাটানোর জন্য আমাদের সাথে যোগ দিন। এটি একটি বিনামূল্যের ক্লাস যা আপনার মানসিক চাপ কমাতে এবং অন্তরের শান্তি খুঁজে পেতে সাহায্য করবে। সবার জন্যই উন্মুক্ত।">Join us for a peaceful morning of simple yoga and meditation. It's a free class to help reduce stress and find inner calm. Everyone is welcome.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <a href="index.html" class="back-home-btn" data-en="← Back to Home" data-bn="← হোম পেজে ফিরে যান">← Back to Home</a>
+    </main>
+
+    <footer>
+        <p data-en="A healthy community is a happy community." data-bn="একটি সুস্থ সম্প্রদায়ই একটি সুখী সম্প্রদায়।">A healthy community is a happy community.</p>
+    </footer>
+
+    <script>
+        // Wait for the page to fully load
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const langEnBtn = document.getElementById('lang-en');
+            const langBnBtn = document.getElementById('lang-bn');
+            const htmlTag = document.documentElement;
+            
+            // Get all elements that have translations
+            const translatableElements = document.querySelectorAll('[data-en], [data-bn]');
+
+            // Function to switch language
+            function switchLanguage(lang) {
+                translatableElements.forEach(el => {
+                    if (lang === 'bn') {
+                        el.textContent = el.getAttribute('data-bn');
+                    } else {
+                        el.textContent = el.getAttribute('data-en');
+                    }
+                });
+
+                // Update the html lang attribute
+                htmlTag.setAttribute('lang', lang);
+
+                // Update button states
+                if (lang === 'bn') {
+                    langBnBtn.classList.add('active');
+                    langEnBtn.classList.remove('active');
+                } else {
+                    langEnBtn.classList.add('active');
+                    langBnBtn.classList.remove('active');
+                }
+
+                // Save the user's choice in localStorage
+                localStorage.setItem('selectedLanguage', lang);
+            }
+
+            // Add click event listeners to the buttons
+            langEnBtn.addEventListener('click', () => switchLanguage('en'));
+            langBnBtn.addEventListener('click', () => switchLanguage('bn'));
+
+            // On page load, check for a saved language preference
+            const savedLanguage = localStorage.getItem('selectedLanguage');
+            if (savedLanguage) {
+                switchLanguage(savedLanguage);
+            }
+        });
+    </script>
+</body>
+</html>
