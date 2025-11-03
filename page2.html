@@ -525,10 +525,7 @@
                 <span class="english">MindBridge</span>
                 <span class="bengali">মাইন্ডব্রিজ</span>
             </div>
-            <button class="language-toggle" onclick="toggleLanguage()">
-                <span class="english">বাংলা</span>
-                <span class="bengali">English</span>
-            </button>
+            
             <nav>
                 <ul>
                     <li><a href="index.html">
@@ -547,6 +544,10 @@
                         <span class="english">About</span>
                         <span class="bengali">আমাদের সম্পর্কে</span>
                     </a></li>
+                    <li><button class="language-toggle" onclick="toggleLanguage()">
+                <span class="english">বাংলা</span>
+                <span class="bengali">English</span>
+            </button></li>
                 </ul>
             </nav>
         </div>
@@ -918,5 +919,25 @@
             </p>
         </div>
     </footer>
+    <script>
+function toggleLanguage() {
+    const englishTexts = document.querySelectorAll('.english');
+    const bengaliTexts = document.querySelectorAll('.bengali');
+
+    // Check current state
+    const isEnglish = englishTexts[0].style.display !== 'none';
+
+    if (isEnglish) {
+        // Hide English, show Bengali
+        englishTexts.forEach(el => el.style.display = 'none');
+        bengaliTexts.forEach(el => el.style.display = 'inline');
+    } else {
+        // Show English, hide Bengali
+        englishTexts.forEach(el => el.style.display = 'inline');
+        bengaliTexts.forEach(el => el.style.display = 'none');
+    }
+}
+</script>
+
 </body>
 </html>

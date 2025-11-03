@@ -1,948 +1,1118 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mission 4: Seasonal Preventive Health Tips - ShasthoSheba</title>
     <style>
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        
-        :root {
-            --primary-color: #2c7a7b;
-            --secondary-color: #4fd1c5;
-            --accent-color: #f6ad55;
-            --text-color: #2d3748;
-            --light-bg: #f7fafc;
-            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --success-color: #48bb78;
-            --warning-color: #ed8936;
-            --danger-color: #f56565;
-            --monsoon-color: #4a90e2;
-            --winter-color: #5d6d7e;
-            --summer-color: #f39c12;
-            --year-round-color: #27ae60;
-        }
-        
-        
-        body {
-            font-family: 'Roboto', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--light-bg);
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-        
-        h1 {
-            font-size: 2.2rem;
-            color: var(--primary-color);
-        }
-        
-        h2 {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-        }
-        
-        h3 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-        }
-        
-        h4 {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-        }
-        
-        p {
-            margin-bottom: 1rem;
-        }
-        
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-color: #2c7a7b;
+        --secondary-color: #4fd1c5;
+        --accent-color: #f6ad55;
+        --text-color: #2d3748;
+        --light-bg: #f7fafc;
+        --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --success-color: #48bb78;
+        --warning-color: #ed8936;
+        --danger-color: #f56565;
+        --monsoon-color: #4a90e2;
+        --winter-color: #5d6d7e;
+        --summer-color: #f39c12;
+        --year-round-color: #27ae60;
+      }
+
+      body {
+        font-family: "Roboto", Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--light-bg);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+        color: var(--primary-color);
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        color: var(--primary-color);
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+      }
+
+      h4 {
+        font-size: 1.2rem;
+        color: var(--primary-color);
+      }
+
+      p {
+        margin-bottom: 1rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 1rem 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo i {
+        font-size: 1.8rem;
+        color: var(--secondary-color);
+      }
+
+      .logo h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+      }
+
+      .header-controls {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .mission-badge {
+        background-color: var(--accent-color);
+        color: var(--primary-color);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+
+      .language-toggle {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 2px solid white;
+        border-radius: 30px;
+        padding: 0.4rem 0.8rem;
+        color: white;
+        cursor: pointer;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .mission-header {
+        text-align: center;
+        padding: 2rem 0;
+        background-color: white;
+        margin: 1rem 0;
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
+      }
+
+      .mission-header h2 {
+        margin-bottom: 0.5rem;
+      }
+
+      .mission-header p {
+        color: #718096;
+        font-size: 1rem;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .sdg-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #f0f9ff;
+        color: #0369a1;
+        padding: 0.5rem 1rem;
+        border-radius: 30px;
+        margin-top: 1rem;
+        font-weight: 500;
+      }
+
+      .seasons-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .season-card {
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .season-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .season-header {
+        padding: 1.5rem;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .season-header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .monsoon {
+        background: linear-gradient(135deg, var(--monsoon-color), #3a7bd5);
+      }
+
+      .winter {
+        background: linear-gradient(135deg, var(--winter-color), #34495e);
+      }
+
+      .summer {
+        background: linear-gradient(135deg, var(--summer-color), #e67e22);
+      }
+
+      .year-round {
+        background: linear-gradient(135deg, var(--year-round-color), #2ecc71);
+      }
+
+      .season-header h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: white;
+      }
+
+      .season-content {
+        padding: 1.5rem;
+      }
+
+      .health-tip {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+        position: relative;
+      }
+
+      .health-tip::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--primary-color);
+        font-weight: bold;
+      }
+
+      .health-tip strong {
+        color: var(--primary-color);
+        display: block;
+        margin-bottom: 0.2rem;
+      }
+
+      .action-button {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 0.7rem 1.5rem;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 500;
+        margin-top: 1rem;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      .action-button:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-2px);
+      }
+
+      .prevention-section {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
+        margin: 2rem 0;
+      }
+
+      .prevention-section h3 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .disease-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .disease-card {
+        background-color: var(--light-bg);
+        padding: 1.5rem;
+        border-radius: 8px;
+        text-align: center;
+        border-top: 4px solid var(--primary-color);
+      }
+
+      .disease-card i {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      .disease-card h4 {
+        margin-bottom: 0.5rem;
+      }
+
+      .disease-card ul {
+        text-align: left;
+        margin-top: 1rem;
+        padding-left: 1.5rem;
+      }
+
+      .disease-card ul li {
+        margin-bottom: 0.5rem;
+      }
+
+      .resources-section {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
+        margin: 2rem 0;
+      }
+
+      .resources-section h3 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .resource-card {
+        background-color: var(--light-bg);
+        padding: 1.5rem;
+        border-radius: 8px;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .resource-card:hover {
+        background-color: #e6fffa;
+        transform: translateY(-3px);
+      }
+
+      .resource-card i {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      .resource-card h4 {
+        margin-bottom: 0.5rem;
+      }
+
+      /* Emergency Section */
+      .emergency-section {
+        background: linear-gradient(135deg, var(--danger-color), #e53e3e);
+        color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        text-align: center;
+        margin: 2rem 0;
+      }
+
+      .emergency-section h3 {
+        color: white;
+        margin-bottom: 1rem;
+      }
+
+      .emergency-section p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .emergency-btn {
+        background-color: white;
+        color: var(--danger-color);
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .emergency-btn:hover {
+        transform: scale(1.05);
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 1.5rem 0;
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      footer p {
+        font-size: 0.9rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
         .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+          flex-direction: column;
+          gap: 0.5rem;
         }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo i {
-            font-size: 1.8rem;
-            color: var(--secondary-color);
-        }
-        
-        .logo h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-        }
-        
-        .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .mission-badge {
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-        
-        .language-toggle {
-            background-color: rgba(255, 255, 255, 0.2);
-            border: 2px solid white;
-            border-radius: 30px;
-            padding: 0.4rem 0.8rem;
-            color: white;
-            cursor: pointer;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        
-        .mission-header {
-            text-align: center;
-            padding: 2rem 0;
-            background-color: white;
-            margin: 1rem 0;
-            border-radius: 10px;
-            box-shadow: var(--card-shadow);
-        }
-        
+
         .mission-header h2 {
-            margin-bottom: 0.5rem;
+          font-size: 1.5rem;
         }
-        
-        .mission-header p {
-            color: #718096;
-            font-size: 1rem;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        .sdg-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background-color: #f0f9ff;
-            color: #0369a1;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            margin-top: 1rem;
-            font-weight: 500;
-        }
-        
-        
+
         .seasons-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+          grid-template-columns: 1fr;
         }
-        
-        
-        .season-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .season-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .season-header {
-            padding: 1.5rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .season-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        .monsoon {
-            background: linear-gradient(135deg, var(--monsoon-color), #3a7bd5);
-        }
-        
-        .winter {
-            background: linear-gradient(135deg, var(--winter-color), #34495e);
-        }
-        
-        .summer {
-            background: linear-gradient(135deg, var(--summer-color), #e67e22);
-        }
-        
-        .year-round {
-            background: linear-gradient(135deg, var(--year-round-color), #2ecc71);
-        }
-        
-        .season-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: white;
-        }
-        
-        .season-content {
-            padding: 1.5rem;
-        }
-        
-        .health-tip {
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-        
-        .health-tip::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-        
-        .health-tip strong {
-            color: var(--primary-color);
-            display: block;
-            margin-bottom: 0.2rem;
-        }
-        
-        
-        .action-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        
-        .action-button:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-        
-       
-        .prevention-section {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--card-shadow);
-            margin: 2rem 0;
-        }
-        
-        .prevention-section h3 {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
+
         .disease-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+          grid-template-columns: 1fr;
         }
-        
-        .disease-card {
-            background-color: var(--light-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            border-top: 4px solid var(--primary-color);
-        }
-        
-        .disease-card i {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .disease-card h4 {
-            margin-bottom: 0.5rem;
-        }
-        
-        .disease-card ul {
-            text-align: left;
-            margin-top: 1rem;
-            padding-left: 1.5rem;
-        }
-        
-        .disease-card ul li {
-            margin-bottom: 0.5rem;
-        }
-        
-       
-        .resources-section {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--card-shadow);
-            margin: 2rem 0;
-        }
-        
-        .resources-section h3 {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
+
         .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+          grid-template-columns: 1fr;
         }
-        
-        .resource-card {
-            background-color: var(--light-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .resource-card:hover {
-            background-color: #e6fffa;
-            transform: translateY(-3px);
-        }
-        
-        .resource-card i {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .resource-card h4 {
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Emergency Section */
-        .emergency-section {
-            background: linear-gradient(135deg, var(--danger-color), #e53e3e);
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            margin: 2rem 0;
-        }
-        
-        .emergency-section h3 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .emergency-section p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .emergency-btn {
-            background-color: white;
-            color: var(--danger-color);
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .emergency-btn:hover {
-            transform: scale(1.05);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1.5rem 0;
-            text-align: center;
-            margin-top: 2rem;
-        }
-        
-        footer p {
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .mission-header h2 {
-                font-size: 1.5rem;
-            }
-            
-            .seasons-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .disease-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .resources-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Language Toggle Styles */
-        .lang-en {
-            display: inline;
-        }
-        
-        .lang-bn {
-            display: none;
-        }
-        
-        body.lang-bn .lang-en {
-            display: none;
-        }
-        
-        body.lang-bn .lang-bn {
-            display: inline;
-        }
-        
-        /* Bengali Font */
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;700&display=swap');
-        
-        body.lang-bn {
-            font-family: 'Hind Siliguri', 'Roboto', sans-serif;
-        }
-        
-        /* Icon Font */
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+      }
+
+      /* Language Toggle Styles */
+      .lang-bn .lang-en {
+        display: none;
+      }
+      .lang-bn .lang-bn {
+        display: inline;
+      }
+      .lang-en .lang-bn {
+        display: none;
+      }
+      .lang-en .lang-en {
+        display: inline;
+      }
+      /* Bengali Font */
+      @import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;700&display=swap");
+
+      body.lang-bn {
+        font-family: "Hind Siliguri", "Roboto", sans-serif;
+      }
+
+      /* Icon Font */
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-shield-virus"></i>
-                    <h1>
-                        <span class="lang-en">ShasthoSheba</span>
-                        <span class="lang-bn">শাস্ত্রোশেবা</span>
-                    </h1>
-                </div>
-                <div class="header-controls">
-                    <div class="mission-badge">
-                        <span class="lang-en">Mission 4</span>
-                        <span class="lang-bn">মিশন ৪</span>
-                    </div>
-                    <button class="language-toggle" type="button">
-                        <i class="fas fa-language"></i>
-                        <span class="lang-en">বাংলা</span>
-                        <span class="lang-bn">English</span>
-                    </button>
-                </div>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <i class="fas fa-shield-virus"></i>
+            <h1>
+              <span class="lang-en">ShasthoSheba</span>
+              <span class="lang-bn">শাস্ত্রোশেবা</span>
+            </h1>
+          </div>
+          <div class="header-controls">
+            <div class="mission-badge">
+              <span class="lang-en"><a href="index.html">Home</a></span>
+              <span class="lang-bn"><a href="index.html">হোম</a></span>
             </div>
+            <button class="language-toggle" type="button">
+              <i class="fas fa-language"></i>
+              <span class="lang-en">বাংলা</span>
+              <span class="lang-bn">English</span>
+            </button>
+          </div>
         </div>
+      </div>
     </header>
 
     <main>
-        <div class="container">
-            <div class="mission-header">
-                <h2>
-                    <span class="lang-en">Seasonal Preventive Health Tips</span>
-                    <span class="lang-bn">ঋতু অনুযায়ী প্রতিরোধমূলক স্বাস্থ্য পরামর্শ</span>
-                </h2>
-                <p>
-                    <span class="lang-en">Stay healthy throughout the year with our seasonal health guidelines. Follow these preventive measures to protect yourself and your community from communicable diseases.</span>
-                    <span class="lang-bn">আমাদের ঋতু অনুযায়ী স্বাস্থ্য নির্দেশিকা সহ সারা বছর সুস্থ থাকুন। সংক্রামক রোগ থেকে নিজেকে এবং আপনার সম্প্রদায়কে রক্ষা করতে এই প্রতিরোধমূলক ব্যবস্থা অনুসরণ করুন।</span>
-                </p>
-                <div class="sdg-badge">
-                    <i class="fas fa-globe"></i>
-                    <span class="lang-en">SDG 3.3 - Communicable Disease Prevention</span>
-                    <span class="lang-bn">এসডিজি ৩.৩ - সংক্রামক রোগ প্রতিরোধ</span>
-                </div>
-            </div>
-
-            <div class="seasons-container">
-                <div class="season-card">
-                    <div class="season-header monsoon">
-                        <h3>
-                            <i class="fas fa-cloud-rain"></i>
-                            <span class="lang-en">Monsoon</span>
-                            <span class="lang-bn">বর্ষা</span>
-                        </h3>
-                    </div>
-                    <div class="season-content">
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Water Safety</span>
-                                <span class="lang-bn">নিরাপদ পানি</span>
-                            </strong>
-                            <span class="lang-en">Drink only boiled or filtered water to prevent waterborne diseases.</span>
-                            <span class="lang-bn">জলবাহিত রোগ প্রতিরোধ করতে শুধুমাত্র ফুটন্ত বা ফিল্টার করা জল পান করুন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Mosquito Protection</span>
-                                <span class="lang-bn">মশা থেকে সুরক্ষা</span>
-                            </strong>
-                            <span class="lang-en">Use mosquito repellents and nets to prevent dengue and malaria.</span>
-                            <span class="lang-bn">ডেঙ্গু এবং ম্যালেরিয়া প্রতিরোধ করতে মশা তাড়ানো স্প্রে এবং মশারি ব্যবহার করুন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Food Hygiene</span>
-                                <span class="lang-bn">খাদ্য স্বাস্থ্যবিধি</span>
-                            </strong>
-                            <span class="lang-en">Avoid street food and eat freshly prepared meals.</span>
-                            <span class="lang-bn">ফুটপাতের খাবার এড়িয়ে চলুন এবং তাজা প্রস্তুত খাবার খান।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Dry Clothing</span>
-                                <span class="lang-bn">শুকনো কাপড়</span>
-                            </strong>
-                            <span class="lang-en">Change out of wet clothes immediately to prevent fungal infections.</span>
-                            <span class="lang-bn">ছত্রাক সংক্রমণ প্রতিরোধ করতে তাৎক্ষণিকভাবে ভেজা কাপড় পরিবর্তন করুন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Clean Surroundings</span>
-                                <span class="lang-bn">পরিষ্কার পরিবেশ</span>
-                            </strong>
-                            <span class="lang-en">Keep your surroundings clean to prevent water accumulation.</span>
-                            <span class="lang-bn">জল জমা প্রতিরোধ করতে আপনার চারপাশে পরিষ্কার রাখুন।</span>
-                        </div>
-                        <button class="action-button">
-                            <span class="lang-en">Learn More</span>
-                            <span class="lang-bn">আরও জানুন</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="season-card">
-                    <div class="season-header winter">
-                        <h3>
-                            <i class="fas fa-snowflake"></i>
-                            <span class="lang-en">Winter</span>
-                            <span class="lang-bn">শীত</span>
-                        </h3>
-                    </div>
-                    <div class="season-content">
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Keep Warm</span>
-                                <span class="lang-bn">উষ্ণ থাকুন</span>
-                            </strong>
-                            <span class="lang-en">Dress in layers to maintain body temperature and prevent colds.</span>
-                            <span class="lang-bn">শরীরের তাপমাত্রা বজায় রাখতে এবং সর্দি প্রতিরোধ করতে স্তরে স্তরে কাপড় পরুন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Flu Vaccination</span>
-                                <span class="lang-bn">ফ্লু টিকা</span>
-                            </strong>
-                            <span class="lang-en">Get your annual flu shot to protect against seasonal influenza.</span>
-                            <span class="lang-bn">মৌসুমী ইনফ্লুয়েঞ্জা থেকে রক্ষা পেতে আপনার বার্ষিক ফ্লু টিকা নিন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Hand Hygiene</span>
-                                <span class="lang-bn">হাত পরিষ্কার</span>
-                            </strong>
-                            <span class="lang-en">Wash hands frequently to prevent transmission of respiratory viruses.</span>
-                            <span class="lang-bn">শ্বাসযন্ত্রের ভাইরাসের সংক্রমণ প্রতিরোধ করতে ঘন ঘন হাত ধোবেন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Ventilation</span>
-                                <span class="lang-bn">বাতাস চলাচল</span>
-                            </strong>
-                            <span class="lang-en">Ensure proper indoor ventilation to reduce virus concentration.</span>
-                            <span class="lang-bn">ভাইরাসের ঘনত্ব কমাতে সঠিক অন্দর বাতাস চলাচল নিশ্চিত করুন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Warm Foods</span>
-                                <span class="lang-bn">উষ্ণ খাবার</span>
-                            </strong>
-                            <span class="lang-en">Consume warm foods and drinks to maintain body heat.</span>
-                            <span class="lang-bn">শরীরের তাপ বজায় রাখতে উষ্ণ খাবার এবং পানীয় গ্রহণ করুন।</span>
-                        </div>
-                        <button class="action-button">
-                            <span class="lang-en">Learn More</span>
-                            <span class="lang-bn">আরও জানুন</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="season-card">
-                    <div class="season-header summer">
-                        <h3>
-                            <i class="fas fa-sun"></i>
-                            <span class="lang-en">Summer</span>
-                            <span class="lang-bn">গ্রীষ্ম</span>
-                        </h3>
-                    </div>
-                    <div class="season-content">
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Hydration</span>
-                                <span class="lang-bn">হাইড্রেশন</span>
-                            </strong>
-                            <span class="lang-en">Drink plenty of water to prevent dehydration and heatstroke.</span>
-                            <span class="lang-bn">ডিহাইড্রেশন এবং হিটস্ট্রোক প্রতিরোধ করতে প্রচুর জল পান করুন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Sun Protection</span>
-                                <span class="lang-bn">রোদ থেকে সুরক্ষা</span>
-                            </strong>
-                            <span class="lang-en">Use sunscreen and wear protective clothing to prevent sunburn.</span>
-                            <span class="lang-bn">সানবার্ন প্রতিরোধ করতে সানস্ক্রিন ব্যবহার করুন এবং সুরক্ষামূলক পোশাক পরুন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Food Safety</span>
-                                <span class="lang-bn">খাদ্য নিরাপত্তা</span>
-                            </strong>
-                            <span class="lang-en">Refrigerate perishable foods promptly to prevent food poisoning.</span>
-                            <span class="lang-bn">খাদ্য বিষক্রিয়া প্রতিরোধ করতে নষ্ট হয়ে যাওয়া খাবার দ্রুত রেফ্রিজারেটরে রাখুন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Insect Protection</span>
-                                <span class="lang-bn">পোকামাকড় থেকে সুরক্ষা</span>
-                            </strong>
-                            <span class="lang-en">Use repellents to prevent mosquito-borne diseases.</span>
-                            <span class="lang-bn">মশাবাহিত রোগ প্রতিরোধ করতে পোকামাকড় তাড়ানো স্প্রে ব্যবহার করুন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Cool Hours</span>
-                                <span class="lang-bn">শীতল সময়</span>
-                            </strong>
-                            <span class="lang-en">Avoid outdoor activities during peak heat hours (10 AM - 4 PM).</span>
-                            <span class="lang-bn">পিক হিট আওয়ারে (সকাল ১০টা - বিকাল ৪টা) আউটডোর ক্রিয়াকলাপ এড়িয়ে চলুন।</span>
-                        </div>
-                        <button class="action-button">
-                            <span class="lang-en">Learn More</span>
-                            <span class="lang-bn">আরও জানুন</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="season-card">
-                    <div class="season-header year-round">
-                        <h3>
-                            <i class="fas fa-calendar-alt"></i>
-                            <span class="lang-en">Year-Round</span>
-                            <span class="lang-bn">সারা বছর</span>
-                        </h3>
-                    </div>
-                    <div class="season-content">
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Regular Check-ups</span>
-                                <span class="lang-bn">নিয়মিত স্বাস্থ্য পরীক্ষা</span>
-                            </strong>
-                            <span class="lang-en">Schedule annual health screenings for early detection.</span>
-                            <span class="lang-bn">প্রাথমিক সনাক্তকরণের জন্য বার্ষিক স্বাস্থ্য পরীক্ষার সময়সূচী করুন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Balanced Diet</span>
-                                <span class="lang-bn">ভারসাম্যপূর্ণ খাদ্য</span>
-                            </strong>
-                            <span class="lang-en">Maintain a nutritious diet to strengthen your immune system.</span>
-                            <span class="lang-bn">আপনার ইমিউন সিস্টেম শক্তিশালী করতে পুষ্টিকর খাদ্য বজায় রাখুন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Physical Activity</span>
-                                <span class="lang-bn">শারীরিক ক্রিয়াকলাপ</span>
-                            </strong>
-                            <span class="lang-en">Exercise regularly for at least 30 minutes a day.</span>
-                            <span class="lang-bn">প্রতিদিন অন্তত ৩০ মিনিটের জন্য নিয়মিত ব্যায়াম করুন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Adequate Sleep</span>
-                                <span class="lang-bn">পর্যাপ্ত ঘুম</span>
-                            </strong>
-                            <span class="lang-en">Ensure 7-8 hours of quality sleep for optimal health.</span>
-                            <span class="lang-bn">সর্বোত্তম স্বাস্থ্যের জন্য ৭-৮ ঘন্টা মানের ঘুম নিশ্চিত করুন।</span>
-                        </div>
-                        <div class="health-tip">
-                            <strong>
-                                <span class="lang-en">Vaccination</span>
-                                <span class="lang-bn">টিকাদান</span>
-                            </strong>
-                            <span class="lang-en">Stay up-to-date with recommended vaccinations.</span>
-                            <span class="lang-bn">সুপারিশকৃত টিকাদানের সাথে আপডেট থাকুন।</span>
-                        </div>
-                        <button class="action-button">
-                            <span class="lang-en">Learn More</span>
-                            <span class="lang-bn">আরও জানুন</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="prevention-section">
-                <h3>
-                    <span class="lang-en">Common Communicable Diseases & Prevention</span>
-                    <span class="lang-bn">সাধারণ সংক্রামক রোগ এবং প্রতিরোধ</span>
-                </h3>
-                <div class="disease-grid">
-                    <div class="disease-card">
-                        <i class="fas fa-virus"></i>
-                        <h4>
-                            <span class="lang-en">Dengue</span>
-                            <span class="lang-bn">ডেঙ্গু</span>
-                        </h4>
-                        <p>
-                            <span class="lang-en">Mosquito-borne viral infection</span>
-                            <span class="lang-bn">মশাবাহিত ভাইরাল সংক্রমণ</span>
-                        </p>
-                        <ul>
-                            <li>
-                                <span class="lang-en">Remove standing water</span>
-                                <span class="lang-bn">স্থির জল অপসারণ করুন</span>
-                            </li>
-                            <li>
-                                <span class="lang-en">Use mosquito nets</span>
-                                <span class="lang-bn">মশারি ব্যবহার করুন</span>
-                            </li>
-                            <li>
-                                <span class="lang-en">Wear protective clothing</span>
-                                <span class="lang-bn">সুরক্ষামূলক পোশাক পরুন</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="disease-card">
-                        <i class="fas fa-bacterium"></i>
-                        <h4>
-                            <span class="lang-en">Cholera</span>
-                            <span class="lang-bn">কলেরা</span>
-                        </h4>
-                        <p>
-                            <span class="lang-en">Waterborne bacterial infection</span>
-                            <span class="lang-bn">জলবাহিত ব্যাকটেরিয়াল সংক্রমণ</span>
-                        </p>
-                        <ul>
-                            <li>
-                                <span class="lang-en">Drink boiled water</span>
-                                <span class="lang-bn">ফুটন্ত জল পান করুন</span>
-                            </li>
-                            <li>
-                                <span class="lang-en">Wash hands with soap</span>
-                                <span class="lang-bn">সাবান দিয়ে হাত ধোবেন</span>
-                            </li>
-                            <li>
-                                <span class="lang-en">Eat hot, fresh food</span>
-                                <span class="lang-bn">গরম, তাজা খাবার খান</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="disease-card">
-                        <i class="fas fa-lungs-virus"></i>
-                        <h4>
-                            <span class="lang-en">Tuberculosis</span>
-                            <span class="lang-bn">যক্ষ্মা</span>
-                        </h4>
-                        <p>
-                            <span class="lang-en">Airborne bacterial infection</span>
-                            <span class="lang-bn">বায়ুবাহিত ব্যাকটেরিয়াল সংক্রমণ</span>
-                        </p>
-                        <ul>
-                            <li>
-                                <span class="lang-en">BCG vaccination</span>
-                                <span class="lang-bn">বিসিজি টিকা</span>
-                            </li>
-                            <li>
-                                <span class="lang-en">Cover mouth when coughing</span>
-                                <span class="lang-bn">কাশির সময় মুখ ঢেকে রাখুন</span>
-                            </li>
-                            <li>
-                                <span class="lang-en">Complete treatment course</span>
-                                <span class="lang-bn">চিকিৎসা কোর্স সম্পূর্ণ করুন</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="disease-card">
-                        <i class="fas fa-shield-virus"></i>
-                        <h4>
-                            <span class="lang-en">COVID-19</span>
-                            <span class="lang-bn">কোভিড-১৯</span>
-                        </h4>
-                        <p>
-                            <span class="lang-en">Respiratory viral infection</span>
-                            <span class="lang-bn">শ্বাসযন্ত্রের ভাইরাল সংক্রমণ</span>
-                        </p>
-                        <ul>
-                            <li>
-                                <span class="lang-en">Wear masks in crowds</span>
-                                <span class="lang-bn">ভিড়ে মাস্ক পরুন</span>
-                            </li>
-                            <li>
-                                <span class="lang-en">Maintain physical distance</span>
-                                <span class="lang-bn">শারীরিক দূরত্ব বজায় রাখুন</span>
-                            </li>
-                            <li>
-                                <span class="lang-en">Get vaccinated</span>
-                                <span class="lang-bn">টিকা নিন</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="resources-section">
-                <h3>
-                    <span class="lang-en">Health Resources</span>
-                    <span class="lang-bn">স্বাস্থ্য সম্পদ</span>
-                </h3>
-                <div class="resources-grid">
-                    <div class="resource-card">
-                        <i class="fas fa-hospital"></i>
-                        <h4>
-                            <span class="lang-en">Find Healthcare</span>
-                            <span class="lang-bn">স্বাস্থ্যসেবা খুঁজুন</span>
-                        </h4>
-                        <p>
-                            <span class="lang-en">Locate nearby hospitals and clinics</span>
-                            <span class="lang-bn">কাছাকাছি হাসপাতাল এবং ক্লিনিক খুঁজুন</span>
-                        </p>
-                        <button class="action-button">
-                            <span class="lang-en">Find Now</span>
-                            <span class="lang-bn">এখনই খুঁজুন</span>
-                        </button>
-                    </div>
-                    <div class="resource-card">
-                        <i class="fas fa-phone-alt"></i>
-                        <h4>
-                            <span class="lang-en">Emergency Hotline</span>
-                            <span class="lang-bn">জরুরি হটলাইন</span>
-                        </h4>
-                        <p>
-                            <span class="lang-en">24/7 medical emergency support</span>
-                            <span class="lang-bn">২৪/৭ মেডিকেল জরুরি সহায়তা</span>
-                        </p>
-                        <button class="action-button">
-                            <span class="lang-en">Call Now</span>
-                            <span class="lang-bn">এখনই কল করুন</span>
-                        </button>
-                    </div>
-                    <div class="resource-card">
-                        <i class="fas fa-file-medical"></i>
-                        <h4>
-                            <span class="lang-en">Health Guide</span>
-                            <span class="lang-bn">স্বাস্থ্য গাইড</span>
-                        </h4>
-                        <p>
-                            <span class="lang-en">Download comprehensive health guide</span>
-                            <span class="lang-bn">বিস্তারিত স্বাস্থ্য গাইড ডাউনলোড করুন</span>
-                        </p>
-                        <button class="action-button">
-                            <span class="lang-en">Download</span>
-                            <span class="lang-bn">ডাউনলোড</span>
-                        </button>
-                    </div>
-                    <div class="resource-card">
-                        <i class="fas fa-user-md"></i>
-                        <h4>
-                            <span class="lang-en">Consult Doctor</span>
-                            <span class="lang-bn">ডাক্তারের সাথে পরামর্শ</span>
-                        </h4>
-                        <p>
-                            <span class="lang-en">Online medical consultation</span>
-                            <span class="lang-bn">অনলাইন মেডিকেল পরামর্শ</span>
-                        </p>
-                        <button class="action-button">
-                            <span class="lang-en">Book Now</span>
-                            <span class="lang-bn">এখনই বুক করুন</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="emergency-section">
-                <h3>
-                    <span class="lang-en">Report Disease Outbreak</span>
-                    <span class="lang-bn">রোগের প্রাদুর্ভাব রিপোর্ট করুন</span>
-                </h3>
-                <p>
-                    <span class="lang-en">If you notice unusual disease patterns in your area, report immediately to help prevent spread.</span>
-                    <span class="lang-bn">আপনি যদি আপনার এলাকায় অস্বাভাবিক রোগের প্যাটার্ন লক্ষ্য করেন, ছড়িয়ে পড়া রোধ করতে অবিলম্বে রিপোর্ট করুন।</span>
-                </p>
-                <button class="emergency-btn">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span class="lang-en">Report Outbreak</span>
-                    <span class="lang-bn">প্রাদুর্ভাব রিপোর্ট করুন</span>
-                </button>
-            </div>
+      <div class="container">
+        <div class="mission-header">
+          <h2>
+            <span class="lang-en">Seasonal Preventive Health Tips</span>
+            <span class="lang-bn"
+              >ঋতু অনুযায়ী প্রতিরোধমূলক স্বাস্থ্য পরামর্শ</span
+            >
+          </h2>
+          <p>
+            <span class="lang-en"
+              >Stay healthy throughout the year with our seasonal health
+              guidelines. Follow these preventive measures to protect yourself
+              and your community from communicable diseases.</span
+            >
+            <span class="lang-bn"
+              >আমাদের ঋতু অনুযায়ী স্বাস্থ্য নির্দেশিকা সহ সারা বছর সুস্থ থাকুন।
+              সংক্রামক রোগ থেকে নিজেকে এবং আপনার সম্প্রদায়কে রক্ষা করতে এই
+              প্রতিরোধমূলক ব্যবস্থা অনুসরণ করুন।</span
+            >
+          </p>
+          <div class="sdg-badge">
+            <i class="fas fa-globe"></i>
+            <span class="lang-en"
+              >SDG 3.3 - Communicable Disease Prevention</span
+            >
+            <span class="lang-bn">এসডিজি ৩.৩ - সংক্রামক রোগ প্রতিরোধ</span>
+          </div>
         </div>
+
+        <div class="seasons-container">
+          <div class="season-card">
+            <div class="season-header monsoon">
+              <h3>
+                <i class="fas fa-cloud-rain"></i>
+                <span class="lang-en">Monsoon</span>
+                <span class="lang-bn">বর্ষা</span>
+              </h3>
+            </div>
+            <div class="season-content">
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Water Safety</span>
+                  <span class="lang-bn">নিরাপদ পানি</span>
+                </strong>
+                <span class="lang-en"
+                  >Drink only boiled or filtered water to prevent waterborne
+                  diseases.</span
+                >
+                <span class="lang-bn"
+                  >জলবাহিত রোগ প্রতিরোধ করতে শুধুমাত্র ফুটন্ত বা ফিল্টার করা জল
+                  পান করুন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Mosquito Protection</span>
+                  <span class="lang-bn">মশা থেকে সুরক্ষা</span>
+                </strong>
+                <span class="lang-en"
+                  >Use mosquito repellents and nets to prevent dengue and
+                  malaria.</span
+                >
+                <span class="lang-bn"
+                  >ডেঙ্গু এবং ম্যালেরিয়া প্রতিরোধ করতে মশা তাড়ানো স্প্রে এবং
+                  মশারি ব্যবহার করুন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Food Hygiene</span>
+                  <span class="lang-bn">খাদ্য স্বাস্থ্যবিধি</span>
+                </strong>
+                <span class="lang-en"
+                  >Avoid street food and eat freshly prepared meals.</span
+                >
+                <span class="lang-bn"
+                  >ফুটপাতের খাবার এড়িয়ে চলুন এবং তাজা প্রস্তুত খাবার
+                  খান।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Dry Clothing</span>
+                  <span class="lang-bn">শুকনো কাপড়</span>
+                </strong>
+                <span class="lang-en"
+                  >Change out of wet clothes immediately to prevent fungal
+                  infections.</span
+                >
+                <span class="lang-bn"
+                  >ছত্রাক সংক্রমণ প্রতিরোধ করতে তাৎক্ষণিকভাবে ভেজা কাপড়
+                  পরিবর্তন করুন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Clean Surroundings</span>
+                  <span class="lang-bn">পরিষ্কার পরিবেশ</span>
+                </strong>
+                <span class="lang-en"
+                  >Keep your surroundings clean to prevent water
+                  accumulation.</span
+                >
+                <span class="lang-bn"
+                  >জল জমা প্রতিরোধ করতে আপনার চারপাশে পরিষ্কার রাখুন।</span
+                >
+              </div>
+              <button class="action-button">
+                <span class="lang-en">Learn More</span>
+                <span class="lang-bn">আরও জানুন</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="season-card">
+            <div class="season-header winter">
+              <h3>
+                <i class="fas fa-snowflake"></i>
+                <span class="lang-en">Winter</span>
+                <span class="lang-bn">শীত</span>
+              </h3>
+            </div>
+            <div class="season-content">
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Keep Warm</span>
+                  <span class="lang-bn">উষ্ণ থাকুন</span>
+                </strong>
+                <span class="lang-en"
+                  >Dress in layers to maintain body temperature and prevent
+                  colds.</span
+                >
+                <span class="lang-bn"
+                  >শরীরের তাপমাত্রা বজায় রাখতে এবং সর্দি প্রতিরোধ করতে স্তরে
+                  স্তরে কাপড় পরুন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Flu Vaccination</span>
+                  <span class="lang-bn">ফ্লু টিকা</span>
+                </strong>
+                <span class="lang-en"
+                  >Get your annual flu shot to protect against seasonal
+                  influenza.</span
+                >
+                <span class="lang-bn"
+                  >মৌসুমী ইনফ্লুয়েঞ্জা থেকে রক্ষা পেতে আপনার বার্ষিক ফ্লু টিকা
+                  নিন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Hand Hygiene</span>
+                  <span class="lang-bn">হাত পরিষ্কার</span>
+                </strong>
+                <span class="lang-en"
+                  >Wash hands frequently to prevent transmission of respiratory
+                  viruses.</span
+                >
+                <span class="lang-bn"
+                  >শ্বাসযন্ত্রের ভাইরাসের সংক্রমণ প্রতিরোধ করতে ঘন ঘন হাত
+                  ধোবেন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Ventilation</span>
+                  <span class="lang-bn">বাতাস চলাচল</span>
+                </strong>
+                <span class="lang-en"
+                  >Ensure proper indoor ventilation to reduce virus
+                  concentration.</span
+                >
+                <span class="lang-bn"
+                  >ভাইরাসের ঘনত্ব কমাতে সঠিক অন্দর বাতাস চলাচল নিশ্চিত
+                  করুন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Warm Foods</span>
+                  <span class="lang-bn">উষ্ণ খাবার</span>
+                </strong>
+                <span class="lang-en"
+                  >Consume warm foods and drinks to maintain body heat.</span
+                >
+                <span class="lang-bn"
+                  >শরীরের তাপ বজায় রাখতে উষ্ণ খাবার এবং পানীয় গ্রহণ
+                  করুন।</span
+                >
+              </div>
+              <button class="action-button">
+                <span class="lang-en">Learn More</span>
+                <span class="lang-bn">আরও জানুন</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="season-card">
+            <div class="season-header summer">
+              <h3>
+                <i class="fas fa-sun"></i>
+                <span class="lang-en">Summer</span>
+                <span class="lang-bn">গ্রীষ্ম</span>
+              </h3>
+            </div>
+            <div class="season-content">
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Hydration</span>
+                  <span class="lang-bn">হাইড্রেশন</span>
+                </strong>
+                <span class="lang-en"
+                  >Drink plenty of water to prevent dehydration and
+                  heatstroke.</span
+                >
+                <span class="lang-bn"
+                  >ডিহাইড্রেশন এবং হিটস্ট্রোক প্রতিরোধ করতে প্রচুর জল পান
+                  করুন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Sun Protection</span>
+                  <span class="lang-bn">রোদ থেকে সুরক্ষা</span>
+                </strong>
+                <span class="lang-en"
+                  >Use sunscreen and wear protective clothing to prevent
+                  sunburn.</span
+                >
+                <span class="lang-bn"
+                  >সানবার্ন প্রতিরোধ করতে সানস্ক্রিন ব্যবহার করুন এবং
+                  সুরক্ষামূলক পোশাক পরুন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Food Safety</span>
+                  <span class="lang-bn">খাদ্য নিরাপত্তা</span>
+                </strong>
+                <span class="lang-en"
+                  >Refrigerate perishable foods promptly to prevent food
+                  poisoning.</span
+                >
+                <span class="lang-bn"
+                  >খাদ্য বিষক্রিয়া প্রতিরোধ করতে নষ্ট হয়ে যাওয়া খাবার দ্রুত
+                  রেফ্রিজারেটরে রাখুন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Insect Protection</span>
+                  <span class="lang-bn">পোকামাকড় থেকে সুরক্ষা</span>
+                </strong>
+                <span class="lang-en"
+                  >Use repellents to prevent mosquito-borne diseases.</span
+                >
+                <span class="lang-bn"
+                  >মশাবাহিত রোগ প্রতিরোধ করতে পোকামাকড় তাড়ানো স্প্রে ব্যবহার
+                  করুন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Cool Hours</span>
+                  <span class="lang-bn">শীতল সময়</span>
+                </strong>
+                <span class="lang-en"
+                  >Avoid outdoor activities during peak heat hours (10 AM - 4
+                  PM).</span
+                >
+                <span class="lang-bn"
+                  >পিক হিট আওয়ারে (সকাল ১০টা - বিকাল ৪টা) আউটডোর ক্রিয়াকলাপ
+                  এড়িয়ে চলুন।</span
+                >
+              </div>
+              <button class="action-button">
+                <span class="lang-en">Learn More</span>
+                <span class="lang-bn">আরও জানুন</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="season-card">
+            <div class="season-header year-round">
+              <h3>
+                <i class="fas fa-calendar-alt"></i>
+                <span class="lang-en">Year-Round</span>
+                <span class="lang-bn">সারা বছর</span>
+              </h3>
+            </div>
+            <div class="season-content">
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Regular Check-ups</span>
+                  <span class="lang-bn">নিয়মিত স্বাস্থ্য পরীক্ষা</span>
+                </strong>
+                <span class="lang-en"
+                  >Schedule annual health screenings for early detection.</span
+                >
+                <span class="lang-bn"
+                  >প্রাথমিক সনাক্তকরণের জন্য বার্ষিক স্বাস্থ্য পরীক্ষার সময়সূচী
+                  করুন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Balanced Diet</span>
+                  <span class="lang-bn">ভারসাম্যপূর্ণ খাদ্য</span>
+                </strong>
+                <span class="lang-en"
+                  >Maintain a nutritious diet to strengthen your immune
+                  system.</span
+                >
+                <span class="lang-bn"
+                  >আপনার ইমিউন সিস্টেম শক্তিশালী করতে পুষ্টিকর খাদ্য বজায়
+                  রাখুন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Physical Activity</span>
+                  <span class="lang-bn">শারীরিক ক্রিয়াকলাপ</span>
+                </strong>
+                <span class="lang-en"
+                  >Exercise regularly for at least 30 minutes a day.</span
+                >
+                <span class="lang-bn"
+                  >প্রতিদিন অন্তত ৩০ মিনিটের জন্য নিয়মিত ব্যায়াম করুন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Adequate Sleep</span>
+                  <span class="lang-bn">পর্যাপ্ত ঘুম</span>
+                </strong>
+                <span class="lang-en"
+                  >Ensure 7-8 hours of quality sleep for optimal health.</span
+                >
+                <span class="lang-bn"
+                  >সর্বোত্তম স্বাস্থ্যের জন্য ৭-৮ ঘন্টা মানের ঘুম নিশ্চিত
+                  করুন।</span
+                >
+              </div>
+              <div class="health-tip">
+                <strong>
+                  <span class="lang-en">Vaccination</span>
+                  <span class="lang-bn">টিকাদান</span>
+                </strong>
+                <span class="lang-en"
+                  >Stay up-to-date with recommended vaccinations.</span
+                >
+                <span class="lang-bn"
+                  >সুপারিশকৃত টিকাদানের সাথে আপডেট থাকুন।</span
+                >
+              </div>
+              <button class="action-button">
+                <span class="lang-en">Learn More</span>
+                <span class="lang-bn">আরও জানুন</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="prevention-section">
+          <h3>
+            <span class="lang-en"
+              >Common Communicable Diseases & Prevention</span
+            >
+            <span class="lang-bn">সাধারণ সংক্রামক রোগ এবং প্রতিরোধ</span>
+          </h3>
+          <div class="disease-grid">
+            <div class="disease-card">
+              <i class="fas fa-virus"></i>
+              <h4>
+                <span class="lang-en">Dengue</span>
+                <span class="lang-bn">ডেঙ্গু</span>
+              </h4>
+              <p>
+                <span class="lang-en">Mosquito-borne viral infection</span>
+                <span class="lang-bn">মশাবাহিত ভাইরাল সংক্রমণ</span>
+              </p>
+              <ul>
+                <li>
+                  <span class="lang-en">Remove standing water</span>
+                  <span class="lang-bn">স্থির জল অপসারণ করুন</span>
+                </li>
+                <li>
+                  <span class="lang-en">Use mosquito nets</span>
+                  <span class="lang-bn">মশারি ব্যবহার করুন</span>
+                </li>
+                <li>
+                  <span class="lang-en">Wear protective clothing</span>
+                  <span class="lang-bn">সুরক্ষামূলক পোশাক পরুন</span>
+                </li>
+              </ul>
+            </div>
+            <div class="disease-card">
+              <i class="fas fa-bacterium"></i>
+              <h4>
+                <span class="lang-en">Cholera</span>
+                <span class="lang-bn">কলেরা</span>
+              </h4>
+              <p>
+                <span class="lang-en">Waterborne bacterial infection</span>
+                <span class="lang-bn">জলবাহিত ব্যাকটেরিয়াল সংক্রমণ</span>
+              </p>
+              <ul>
+                <li>
+                  <span class="lang-en">Drink boiled water</span>
+                  <span class="lang-bn">ফুটন্ত জল পান করুন</span>
+                </li>
+                <li>
+                  <span class="lang-en">Wash hands with soap</span>
+                  <span class="lang-bn">সাবান দিয়ে হাত ধোবেন</span>
+                </li>
+                <li>
+                  <span class="lang-en">Eat hot, fresh food</span>
+                  <span class="lang-bn">গরম, তাজা খাবার খান</span>
+                </li>
+              </ul>
+            </div>
+            <div class="disease-card">
+              <i class="fas fa-lungs-virus"></i>
+              <h4>
+                <span class="lang-en">Tuberculosis</span>
+                <span class="lang-bn">যক্ষ্মা</span>
+              </h4>
+              <p>
+                <span class="lang-en">Airborne bacterial infection</span>
+                <span class="lang-bn">বায়ুবাহিত ব্যাকটেরিয়াল সংক্রমণ</span>
+              </p>
+              <ul>
+                <li>
+                  <span class="lang-en">BCG vaccination</span>
+                  <span class="lang-bn">বিসিজি টিকা</span>
+                </li>
+                <li>
+                  <span class="lang-en">Cover mouth when coughing</span>
+                  <span class="lang-bn">কাশির সময় মুখ ঢেকে রাখুন</span>
+                </li>
+                <li>
+                  <span class="lang-en">Complete treatment course</span>
+                  <span class="lang-bn">চিকিৎসা কোর্স সম্পূর্ণ করুন</span>
+                </li>
+              </ul>
+            </div>
+            <div class="disease-card">
+              <i class="fas fa-shield-virus"></i>
+              <h4>
+                <span class="lang-en">COVID-19</span>
+                <span class="lang-bn">কোভিড-১৯</span>
+              </h4>
+              <p>
+                <span class="lang-en">Respiratory viral infection</span>
+                <span class="lang-bn">শ্বাসযন্ত্রের ভাইরাল সংক্রমণ</span>
+              </p>
+              <ul>
+                <li>
+                  <span class="lang-en">Wear masks in crowds</span>
+                  <span class="lang-bn">ভিড়ে মাস্ক পরুন</span>
+                </li>
+                <li>
+                  <span class="lang-en">Maintain physical distance</span>
+                  <span class="lang-bn">শারীরিক দূরত্ব বজায় রাখুন</span>
+                </li>
+                <li>
+                  <span class="lang-en">Get vaccinated</span>
+                  <span class="lang-bn">টিকা নিন</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="resources-section">
+          <h3>
+            <span class="lang-en">Health Resources</span>
+            <span class="lang-bn">স্বাস্থ্য সম্পদ</span>
+          </h3>
+          <div class="resources-grid">
+            <div class="resource-card">
+              <i class="fas fa-hospital"></i>
+              <h4>
+                <span class="lang-en">Find Healthcare</span>
+                <span class="lang-bn">স্বাস্থ্যসেবা খুঁজুন</span>
+              </h4>
+              <p>
+                <span class="lang-en">Locate nearby hospitals and clinics</span>
+                <span class="lang-bn"
+                  >কাছাকাছি হাসপাতাল এবং ক্লিনিক খুঁজুন</span
+                >
+              </p>
+              <button class="action-button">
+                <span class="lang-en">Find Now</span>
+                <span class="lang-bn">এখনই খুঁজুন</span>
+              </button>
+            </div>
+            <div class="resource-card">
+              <i class="fas fa-phone-alt"></i>
+              <h4>
+                <span class="lang-en">Emergency Hotline</span>
+                <span class="lang-bn">জরুরি হটলাইন</span>
+              </h4>
+              <p>
+                <span class="lang-en">24/7 medical emergency support</span>
+                <span class="lang-bn">২৪/৭ মেডিকেল জরুরি সহায়তা</span>
+              </p>
+              <button class="action-button">
+                <span class="lang-en">Call Now</span>
+                <span class="lang-bn">এখনই কল করুন</span>
+              </button>
+            </div>
+            <div class="resource-card">
+              <i class="fas fa-file-medical"></i>
+              <h4>
+                <span class="lang-en">Health Guide</span>
+                <span class="lang-bn">স্বাস্থ্য গাইড</span>
+              </h4>
+              <p>
+                <span class="lang-en">Download comprehensive health guide</span>
+                <span class="lang-bn"
+                  >বিস্তারিত স্বাস্থ্য গাইড ডাউনলোড করুন</span
+                >
+              </p>
+              <button class="action-button">
+                <span class="lang-en">Download</span>
+                <span class="lang-bn">ডাউনলোড</span>
+              </button>
+            </div>
+            <div class="resource-card">
+              <i class="fas fa-user-md"></i>
+              <h4>
+                <span class="lang-en">Consult Doctor</span>
+                <span class="lang-bn">ডাক্তারের সাথে পরামর্শ</span>
+              </h4>
+              <p>
+                <span class="lang-en">Online medical consultation</span>
+                <span class="lang-bn">অনলাইন মেডিকেল পরামর্শ</span>
+              </p>
+              <button class="action-button">
+                <span class="lang-en">Book Now</span>
+                <span class="lang-bn">এখনই বুক করুন</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="emergency-section">
+          <h3>
+            <span class="lang-en">Report Disease Outbreak</span>
+            <span class="lang-bn">রোগের প্রাদুর্ভাব রিপোর্ট করুন</span>
+          </h3>
+          <p>
+            <span class="lang-en"
+              >If you notice unusual disease patterns in your area, report
+              immediately to help prevent spread.</span
+            >
+            <span class="lang-bn"
+              >আপনি যদি আপনার এলাকায় অস্বাভাবিক রোগের প্যাটার্ন লক্ষ্য করেন,
+              ছড়িয়ে পড়া রোধ করতে অবিলম্বে রিপোর্ট করুন।</span
+            >
+          </p>
+          <button class="emergency-btn">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span class="lang-en">Report Outbreak</span>
+            <span class="lang-bn">প্রাদুর্ভাব রিপোর্ট করুন</span>
+          </button>
+        </div>
+      </div>
     </main>
 
     <footer>
-        <div class="container">
-            <p>
-                <span class="lang-en">© 2023 ShasthoSheba - Preventive Health for Rural Bangladesh | SDG 3.3 - Communicable Disease Prevention</span>
-                <span class="lang-bn">© ২০২৩ শাস্ত্রোশেবা - গ্রামীণ বাংলাদেশের জন্য প্রতিরোধমূলক স্বাস্থ্য | এসডিজি ৩.৩ - সংক্রামক রোগ প্রতিরোধ</span>
-            </p>
-        </div>
+      <div class="container">
+        <p>
+          <span class="lang-en"
+            >© 2023 ShasthoSheba - Preventive Health for Rural Bangladesh | SDG
+            3.3 - Communicable Disease Prevention</span
+          >
+          <span class="lang-bn"
+            >© ২০২৩ শাস্ত্রোশেবা - গ্রামীণ বাংলাদেশের জন্য প্রতিরোধমূলক
+            স্বাস্থ্য | এসডিজি ৩.৩ - সংক্রামক রোগ প্রতিরোধ</span
+          >
+        </p>
+      </div>
     </footer>
-</body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggleBtn = document.querySelector(".language-toggle");
+        const body = document.body;
+
+        if (!toggleBtn) {
+          console.error("Language toggle button not found!");
+          return;
+        }
+
+        // Function to set language
+        function setLanguage(lang) {
+          if (lang === "bn") {
+            body.classList.add("lang-bn");
+            localStorage.setItem("language", "bn");
+          } else {
+            body.classList.remove("lang-bn");
+            localStorage.setItem("language", "en");
+          }
+        }
+
+        // Toggle button click
+        toggleBtn.addEventListener("click", function () {
+          const isBangla = body.classList.contains("lang-bn");
+          if (isBangla) {
+            setLanguage("en");
+          } else {
+            setLanguage("bn");
+          }
+        });
+
+        // Load saved language (if any)
+        const savedLang = localStorage.getItem("language");
+        if (savedLang === "bn") {
+          body.classList.add("lang-bn");
+        } else {
+          body.classList.remove("lang-bn");
+        }
+      });
+    </script>
+  </body>
 </html>

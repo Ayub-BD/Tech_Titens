@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="Volunteer Health Worker Directory | ShasthoSheba" data-bn="স্বেচ্ছাসেবক স্বাস্থ্যকর্মী ডিরেক্টরি | শাস্থোসেবা">Volunteer Health Worker Directory | ShasthoSheba</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    
+    <style>
+        /* --- Basic Setup & Fonts --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        :root {
+            --primary-color: #2a9d8f;
+            --secondary-color: #e9c46a;
+            --accent-color: #e76f51;
+            --trust-color: #457b9d;
+            --background-color: #f4f1de;
+            --text-color: #333333;
+            --light-gray: #e0e0e0;
+            --white: #ffffff;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- Background Shapes --- */
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -150px;
+            right: -150px;
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(42, 157, 143, 0.05), rgba(69, 123, 157, 0.05));
+            z-index: -1;
+            transform: rotate(25deg);
+            pointer-events: none;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -150px;
+            left: -150px;
+            width: 500px;
+            height: 500px;
+            background-color: rgba(255, 255, 255, 0.4);
+            z-index: -1;
+            pointer-events: none;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: 12px; /* Softer corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Language Toggle --- */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-switch button {
+            background-color: var(--white);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switch button.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* --- Header & Footer --- */
+        .page-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 5px solid var(--trust-color);
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            margin: 0.25rem 0 0;
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* --- Main Content --- */
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            border-bottom: 3px solid var(--trust-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .reality-check {
+            background-color: #fdf8e1;
+            border-left: 5px solid var(--accent-color);
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .reality-check p {
+            margin: 0;
+        }
+
+        /* --- Volunteer Cards (More User-Friendly) --- */
+        .volunteer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem; /* More space between cards */
+        }
+
+        .volunteer-card {
+            border-left: 5px solid var(--trust-color);
+            border-radius: 0 12px 12px 0; /* Softer corners */
+            padding: 2rem; /* More padding */
+            background-color: var(--white);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .volunteer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-left-width: 8px;
+        }
+
+        /* --- Colorful and Enhanced Avatar --- */
+        .volunteer-avatar {
+            font-size: 3.5rem; /* Slightly larger */
+            min-width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f4f8; /* Light background for the avatar */
+            border-radius: 50%; /* Circular background */
+            border: 3px solid var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            /* filter: grayscale(100%); REMOVED to make it colorful */
+        }
+
+        .volunteer-info h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-size: 1.3rem; /* Larger name */
+            font-weight: 600;
+        }
+
+        .volunteer-role {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 0.2rem 0.7rem;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem; /* More space below role */
+        }
+
+        /* --- Enhanced Phone Number --- */
+        .volunteer-contact {
+            font-size: 1.1rem; /* Larger font */
+            color: var(--accent-color); /* Accent color for the whole line */
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .volunteer-contact strong {
+            color: var(--text-color); /* Keep label dark */
+            font-weight: 600;
+        }
+        
+        .volunteer-description {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #555; /* Slightly lighter text for description */
+        }
+        
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Language Toggle Buttons -->
+    <div class="lang-switch">
+        <button id="lang-en" class="active">EN</button>
+        <button id="lang-bn">BN</button>
+        <button onclick="location.href='index.html'" class="back-home-btn" data-en="← Back to Home" data-bn="← হোম পেজে ফিরে যান">Home</button>
+    </div>
+
+    <header class="page-header">
+        <h1 data-en="ShasthoSheba" data-bn="শাস্থোসেবা">ShasthoSheba</h1>
+        <p data-en="Connecting you to local health heroes" data-bn="আপনাকে স্থানীয় স্বাস্থ্য বীরদের সাথে যুক্ত করছে">Connecting you to local health heroes</p>
+    </header>
+
+    <main class="container">
+        <section id="intro">
+            <h2 class="section-title" data-en="Volunteer Health Worker Directory" data-bn="স্বেচ্ছাসেবক স্বাস্থ্যকর্মী ডিরেক্টরি">Volunteer Health Worker Directory</h2>
+            <p data-en="In times of need, your neighbors are here to help. This is a list of trained volunteers in our community. You can call them for advice or immediate help." data-bn="প্রয়োজনের সময়ে, আপনার প্রতিবেশীরা আপনাকে সাহায্য করার জন্য এখানে আছে। আমাদের সম্প্রদায়ের প্রশিক্ষিত স্বেচ্ছাসেবকদের একটি তালিকা এটি। আপনি পরামর্শের জন্য বা তাৎক্ষণিক সাহায্যের জন্য তাদের কল করতে পারেন।">In times of need, your neighbors are here to help. This is a list of trained volunteers in our community. You can call them for advice or immediate help.</p>
+        </section>
+
+        <section id="reality-check" class="reality-check">
+            <h3 data-en="Hablu's Reality Check" data-bn="হাবলুর বাস্তব অভিজ্ঞতা">Hablu's Reality Check</h3>
+            <p data-en="It's 2 AM and someone has a high fever. Who do you call? A pregnant woman needs advice. Who can help? This directory is our answer." data-bn="রাত ২টো, আর কারও জ্বর বেড়ে গেছে। আপনি কাকে কল করবেন? একজন অন্তঃসত্ত্বা মহিলার পরামর্শের প্রয়োজন। কে সাহায্য করতে পারে? এই ডিরেক্টরিটিই আমাদের উত্তর।">It's 2 AM and someone has a high fever. Who do you call? A pregnant woman needs advice. Who can help? This directory is our answer.</p>
+        </section>
+
+        <section id="volunteers">
+            <h2 class="section-title" data-en="Our Health Heroes" data-bn="আমাদের স্বাস্থ্য বীররা">Our Health Heroes</h2>
+            <div class="volunteer-list">
+                <!-- Volunteer 1 -->
+                <div class="volunteer-card">
+                    <div class="volunteer-avatar">👩‍⚕</div>
+                    <div class="volunteer-info">
+                        <h3 data-en="Anwara Begum" data-bn="আনজুয়ারা বেগম">Anwara Begum</h3>
+                        <div class="volunteer-role" data-en="Traditional Birth Attendant" data-bn="ধাত্রীবিড়ি">Traditional Birth Attendant</div>
+                        <p class="volunteer-contact">📞 <strong data-en="Phone:" data-bn="ফোন:">Phone:</strong> 01712-345678</p>
+                        <p class="volunteer-description" data-en="Experienced in mother and child care. Available for home visits and advice." data-bn="মা এবং শিশুর যত্নে অভিজ্ঞ। বাড়িতে গিয়ে পরিদর্শন এবং পরামর্শের জন্য উপলব্ধ।">Experienced in mother and child care. Available for home visits and advice.</p>
+                    </div>
+                </div>
+
+                <!-- Volunteer 2 -->
+                <div class="volunteer-card">
+                    <div class="volunteer-avatar">👨‍⚕</div>
+                    <div class="volunteer-info">
+                        <h3 data-en="Rahim Molla" data-bn="রহিম মোল্লা">Rahim Molla</h3>
+                        <div class="volunteer-role" data-en="First Aid Provider" data-bn="প্রাথমিক চিকিৎসা প্রদানকারী">First Aid Provider</div>
+                        <p class="volunteer-contact">📞 <strong data-en="Phone:" data-bn="ফোন:">Phone:</strong> 01823-456789</p>
+                        <p class="volunteer-description" data-en="Trained in basic first aid. Can help with cuts, burns, and minor injuries." data-bn="প্রাথমিক চিকিৎসায় প্রশিক্ষিত। কাটা, পোড়া এবং সামান্য আঘাতে সাহায্য করতে পারেন।">Trained in basic first aid. Can help with cuts, burns, and minor injuries.</p>
+                    </div>
+                </div>
+
+                <!-- Volunteer 3 -->
+                <div class="volunteer-card">
+                    <div class="volunteer-avatar">👩</div>
+                    <div class="volunteer-info">
+                        <h3 data-en="Joya Khatun" data-bn="জয়া খাতুন">Joya Khatun</h3>
+                        <div class="volunteer-role" data-en="Mental Health First Responder" data-bn="মানসিক স্বাস্থ্য প্রথম সাড়াদাতা">Mental Health First Responder</div>
+                        <p class="volunteer-contact">📞 <strong data-en="Phone:" data-bn="ফোন:">Phone:</strong> 01934-567890</p>
+                        <p class="volunteer-description" data-en="A good listener trained to provide initial support for stress, anxiety, and sadness." data-bn="একজন ভালো শ্রোতা, যিনি মানসিক চাপ, উদ্বেগ এবং বিষণ্ণতার জন্য প্রাথমিক সমর্থন দেওয়ার জন্য প্রশিক্ষিত।">A good listener trained to provide initial support for stress, anxiety, and sadness.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <a href="index.html" class="back-home-btn" data-en="← Back to Home" data-bn="← হোম পেজে ফিরে যান">← Back to Home</a>
+    </main>
+
+    <footer>
+        <p data-en="A community that cares for each other." data-bn="একটি সম্প্রদায় যারা পরস্পরের যত্ন নেয়।">A community that cares for each other.</p>
+    </footer>
+
+    <script>
+        // Wait for the page to fully load
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const langEnBtn = document.getElementById('lang-en');
+            const langBnBtn = document.getElementById('lang-bn');
+            const htmlTag = document.documentElement;
+            
+            // Get all elements that have translations
+            const translatableElements = document.querySelectorAll('[data-en], [data-bn]');
+
+            // Function to switch language
+            function switchLanguage(lang) {
+                translatableElements.forEach(el => {
+                    if (lang === 'bn') {
+                        el.textContent = el.getAttribute('data-bn');
+                    } else {
+                        el.textContent = el.getAttribute('data-en');
+                    }
+                });
+
+                // Update the html lang attribute
+                htmlTag.setAttribute('lang', lang);
+
+                // Update button states
+                if (lang === 'bn') {
+                    langBnBtn.classList.add('active');
+                    langEnBtn.classList.remove('active');
+                } else {
+                    langEnBtn.classList.add('active');
+                    langBnBtn.classList.remove('active');
+                }
+
+                // Save the user's choice in localStorage
+                localStorage.setItem('selectedLanguage', lang);
+            }
+
+            // Add click event listeners to the buttons
+            langEnBtn.addEventListener('click', () => switchLanguage('en'));
+            langBnBtn.addEventListener('click', () => switchLanguage('bn'));
+
+            // On page load, check for a saved language preference
+            const savedLanguage = localStorage.getItem('selectedLanguage');
+            if (savedLanguage) {
+                switchLanguage(savedLanguage);
+            }
+        });
+    </script>
+</body>
+</html>
