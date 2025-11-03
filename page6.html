@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission 6: Symptom Awareness Guide | MonBondhu</title>
+    <style>
+        /* Basic Reset & Mobile-First Design */
+        html {
+            scroll-behavior: smooth; /* Enables smooth scrolling for anchor links */
+        }
+
+        body {
+            font-family: 'SolaimanLipi', 'Noto Sans Bengali', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff; /* Light, calming blue */
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding-bottom: 20px;
+        }
+
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        /* --- Disclaimer Section --- */
+        .disclaimer {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            margin: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .disclaimer strong {
+            color: #856404;
+        }
+
+        /* --- Navigation Section --- */
+        nav {
+            padding: 0 20px;
+        }
+
+        .symptom-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .symptom-nav li a {
+            display: block;
+            padding: 15px;
+            background-color: #e7f3ff;
+            color: #0056b3;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            border: 1px solid #cce7ff;
+        }
+
+        .symptom-nav li a:hover {
+            background-color: #cce7ff;
+            transform: translateY(-3px);
+        }
+
+        /* --- Symptom Detail Sections --- */
+        main {
+            padding: 20px;
+        }
+
+        .symptom-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            background-color: #fdfdfd;
+        }
+
+        .symptom-section h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #e7f3ff;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .symptom-section h3 {
+            color: #333;
+            margin-top: 25px;
+        }
+
+        .symptom-section p {
+            margin-bottom: 15px;
+        }
+
+        .info-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .warning-box {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .warning-box h3 {
+            color: #721c24;
+            margin-top: 0;
+        }
+
+        .warning-box ul {
+            padding-left: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f1f1f1;
+        }
+
+        footer a {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>লক্ষণ সম্পর্কে সচেতনতা<br><small>(Symptom Awareness Guide)</small></h1>
+            <p>স্বাস্থ্য সম্পর্কে জানুন, নিরাপদে থাকুন<br><small>Know about health, stay safe)</small></p>
+        </header>
+
+        <main>
+            <div class="disclaimer">
+                <strong>গুরুত্বপূর্ণ বিজ্ঞপ্তি (Important Notice):</strong><br>
+                এটি কোনো রোগ নির্ণয়ের সরঞ্জাম নয়। এটি কেবল সাধারণ তথ্যের জন্য। ডাক্তারের পরামর্শ ছাড়া ওষুধ সেবন করবেন না।<br>
+                <small>(This is not a diagnostic tool. It is for general information only. Do not take medicine without a doctor's advice.)</small>
+            </div>
+
+            <nav>
+                <ul class="symptom-nav">
+                    <li><a href="#diarrhea">ডায়রিয়া<br><small>(Diarrhea)</small></a></li>
+                    <li><a href="#chest-pain">বুকে ব্যথা<br><small>(Chest Pain)</small></a></li>
+                    <li><a href="#pregnancy">গর্ভাবস্থা<br><small>(Pregnancy)</small></a></li>
+                    <li><a href="#mental-health">মানসিক চাপ<br><small>(Mental Stress)</small></a></li>
+                </ul>
+            </nav>
+
+            <!-- =================== Symptom 1: Diarrhea =================== -->
+            <section id="diarrhea" class="symptom-section">
+                <h2>ডায়রিয়া / Diarrhea</h2>
+                <p>ডায়রিয়া হলো পাতলা বা জলীয় মলত্যাগ, যা সাধারণত একদিনে তিন বা তার বেশি হয়। এটি শরীর থেকে পানি এবং লবণ হারিয়ে দেয়, যাকে ডিহাইড্রেশন বলে।</p>
+                <p><small>(Diarrhea is having loose or watery stools, typically three or more times in a day. It causes the body to lose water and salts, known as dehydration.)</small></p>
+
+                <div class="info-box">
+                    <h3>আপনি কী করতে পারেন (What you can do):</h3>
+                    <p>ডিহাইড্রেশন প্রতিরোধ করা সবচেয়ে গুরুত্বপূর্ণ।</p>
+                    <ul>
+                        <li>বিশুদ্ধ পানি, লবণ-চিনির দ্রবণ (ওআরএস), বা ফলের রস পান করুন।</li>
+                        <li>তেল-মশলাযুক্ত খাবার এড়িয়ে চলুন। ভাত, ডাল, কলা ইত্যাদি সহজে হজম হয় এমন খাবার খান।</li>
+                    </ul>
+                    <p><small>(The most important thing is to prevent dehydration. Drink clean water, Oral Rehydration Solution (ORS), or fruit juice. Avoid oily/spicy foods. Eat easily digestible foods like rice, lentils, bananas.)</small></p>
+                </div>
+
+                <div class="warning-box">
+                    <h3>ডাক্তারের পরামর্শ কখন নেবেন (When to see a doctor):</h3>
+                    <p>নিচের কোনো লক্ষণ থাকলে অবিলম্বে ডাক্তারের কাছে যান:</p>
+                    <ul>
+                        <li>প্রস্রাবের রং গাঢ় হওয়া বা খুব কম প্রস্রাব হওয়া।</li>
+                        <li>মুখের ভেতরে, চোখে বা ত্বকে শুষ্কভাব অনুভব করা।</li>
+                        <li>জ্বর বা খুব বেশি দুর্বল লাগা।</li>
+                        <li>মলের সাথে রক্ত যাওয়া।</li>
+                    </ul>
+                    <p><small>(Go to a doctor immediately if you have any of these signs: dark urine or very little urine; dryness in the mouth, eyes, or skin; fever or severe weakness; blood in the stool.)</small></p>
+                </div>
+            </section>
+
+            <!-- =================== Symptom 2: Chest Pain =================== -->
+            <section id="chest-pain" class="symptom-section">
+                <h2>বুকে ব্যথা / Chest Pain</h2>
+                <p>বুকে ব্যথা অনেক কারণে হতে পারে, যেমন হার্ট অ্যাটাক, গ্যাস, বা পেশীতে টান। বুকে ব্যথাকে কখনই হালকাভাবে নেওয়া উচিত নয়।</p>
+                <p><small>(Chest pain can have many causes, like a heart attack, gas, or muscle strain. Chest pain should never be taken lightly.)</small></p>
+
+                <div class="warning-box">
+                    <h3>অবিলম্বে সাহায্য নিন (Seek Immediate Help):</h3>
+                    <p>যদি ব্যথাটি তীব্র হয় এবং নিচের কোনো লক্ষণের সাথে থাকে, তবে অবিলম্বে হাসপাতালে যান বা জরুরি সাহায্য ডাকুন:</p>
+                    <ul>
+                        <li>ব্যথা বাম বাহু, ঘাড়, চোয়াল বা পিঠে ছড়িয়ে পড়া।</li>
+                        <li>শ্বাসকষ্ট বা ঘাম হওয়া।</li>
+                        <li>বমি বমি ভাব বা মাথা ঘোরা।</li>
+                    </ul>
+                    <p><small>(If the pain is severe and comes with any of these signs, go to the hospital or call for emergency help immediately: pain spreading to the left arm, neck, jaw, or back; shortness of breath or sweating; nausea or dizziness.)</small></p>
+                </div>
+            </section>
+
+            <!-- =================== Symptom 3: Pregnancy =================== -->
+            <section id="pregnancy" class="symptom-section">
+                <h2>গর্ভাবস্থা / Pregnancy</h2>
+                <p>গর্ভবতী মায়েদের নিয়মিত চেক-আপ এবং টিকা দেওয়া খুবই জরুরি। এতে মা এবং সন্তান উভয়েই সুস্থ থাকে।</p>
+                <p><small>(Regular check-ups and vaccinations are very important for pregnant mothers. This keeps both the mother and the baby healthy.)</small></p>
+
+                <div class="info-box">
+                    <h3>আপনি কী করতে পারেন (What you can do):</h3>
+                    <ul>
+                        <li>স্থানীয় স্বাস্থ্য কেন্দ্র বা হাসপাতালে গিয়ে নিয়মিত চেক-আপের সময়সূচী জেনে নিন।</li>
+                        <li>ডাক্তার বা স্বাস্থ্যকর্মীর পরামর্শ অনুযায়ী সব টিকা নিন।</li>
+                        <li>পুষ্টিকর খাবার খান এবং বিশ্রাম নিন।</li>
+                    </ul>
+                    <p><small>(Visit your local health center or hospital to learn the schedule for regular check-ups. Get all recommended vaccines from a doctor or health worker. Eat nutritious food and get plenty of rest.)</small></p>
+                </div>
+
+                <div class="warning-box">
+                    <h3>ডাক্তারের পরামর্শ কখন নেবেন (When to see a doctor):</h3>
+                    <p>গর্ভাবস্থায় নিচের কোনো লক্ষণ দেখা দিলে অবিলম্বে ডাক্তারের সাথে যোগাযোগ করুন:</p>
+                    <ul>
+                        <li>তীব্র মাথাব্যথা বা ঝাপসা দেখা।</li>
+                        <li>পেটে ব্যথা বা সঙ্কোচন অনুভব করা।</li>
+                        <li>যোনিপথ দিয়ে রক্তপাত বা পানি পড়া।</li>
+                    </ul>
+                    <p><small>(Contact a doctor immediately if you experience any of these signs during pregnancy: severe headache or blurred vision; pain or cramping in the abdomen; bleeding or fluid from the vagina.)</small></p>
+                </div>
+            </section>
+
+            <!-- =================== Symptom 4: Mental Health =================== -->
+            <section id="mental-health" class="symptom-section">
+                <h2>মানসিক চাপ / Mental Stress</h2>
+                <p>দীর্ঘদিন ধরে দুশ্চিন্তা, বিষণ্ণতা বা ঘুমের সমস্যা হলে সেটি মানসিক স্বাস্থ্যের অবনতি হতে পারে। এটি একটি রোগ এবং এর চিকিৎসা আছে।</p>
+                <p><small>(Long-term anxiety, sadness, or sleep problems can be a sign of declining mental health. This is an illness, and it has a treatment.)</small></p>
+
+                <div class="info-box">
+                    <h3>আপনি কী করতে পারেন (What you can do):</h3>
+                    <ul>
+                        <li>আপনার মনের কথা বিশ্বাসী কারও সাথে শেয়ার করুন।</li>
+                        <li>নিয়মিত হালকা ব্যায়াম বা হাঁটুন।</li>
+                        <li>আপনার আগ্রহের কাজে সময় দিন।</li>
+                        <li>MonBondhu অ্যাপের "মানসিক স্বাস্থ্য পরীক্ষা" এবং "গোপনীয় সাহায্য" ব্যবহার করুন।</li>
+                    </ul>
+                    <p><small>(Share your feelings with someone you trust. Exercise or walk regularly. Spend time on your hobbies. Use the "Mental Health Check-In" and "Anonymous Help" features in the MonBondhu app.)</small></p>
+                </div>
+
+                <div class="warning-box">
+                    <h3>ডাক্তারের পরামর্শ কখন নেবেন (When to see a doctor):</h3>
+                    <p>যদি আপনার দৈনন্দিন জীবনে কাজ করতে সমস্যা হচ্ছে বা নিচের লক্ষণগুলো দেখা দেয়:</p>
+                    <ul>
+                        <li>কোনো কিছুতেই আনন্দ পাচ্ছেন না।</li>
+                        <li>খাওয়া-দাওয়া বা ঘুমের ওপর সম্পূর্ণ নিয়ন্ত্রণ নেই।</li>
+                        <li>আত্মহত্যার চিন্তা মাথায় আসা।</li>
+                    </ul>
+                    <p><small>(See a doctor if you are having trouble with your daily life or experience these signs: not finding joy in anything; no control over eating or sleeping; thoughts of self-harm.)</small></p>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <a href="#">হোম পেজে ফিরে যান<br><small>(Return to Home Page)</small></a>
+        </footer>
+    </div>
+
+</body>
+</html>
