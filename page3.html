@@ -131,9 +131,9 @@
         background-color: #218838;
       }
 
-      /* --- Confirmation Page Styles --- */
+      
       .confirmation-section {
-        display: none; /* Hidden by default */
+        display: none; 
       }
 
       .success-icon {
@@ -187,28 +187,27 @@
         background-color: #0056b3;
       }
 
-      /* --- The No-JS Page Toggle Logic --- */
-      /* This hidden radio button controls which section is visible */
+      
       #page-toggle {
         display: none;
       }
 
-      /* When the radio button is checked (by clicking the submit label)... */
+     
       #page-toggle:checked ~ .container .form-section {
-        display: none; /* ...hide the form section. */
+        display: none; 
       }
 
       #page-toggle:checked ~ .container .confirmation-section {
-        display: block; /* ...and show the confirmation section. */
+        display: block; 
       }
     </style>
   </head>
   <body>
-    <!-- This hidden radio button is the key to switching views without JavaScript -->
+    
     <input type="radio" id="page-toggle" name="view-state" hidden />
 
     <div class="container">
-      <!-- =================== FORM SECTION =================== -->
+      
       <section class="form-section">
         <h1>
           গোপনীয় সাহায্যের অনুরোধ<br /><small>(Anonymous Help Request)</small>
@@ -233,7 +232,7 @@
           >
         </div>
 
-        <!-- The form action is removed as this is a prototype. The submit button is a label. -->
+       
         <form>
           <div class="form-group">
             <label for="help-message"
@@ -358,7 +357,7 @@
         <a href="index.html" class="home-btn"
           >হোম পেজে ফিরে যান<br /><small>(Return to Home Page)</small></a
         >
-        <!-- The link "#" is a placeholder for the main page later. -->
+        
       </section>
     </div>
   </body>
