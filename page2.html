@@ -1,943 +1,1401 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mission 2: Community Health Map</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Hind Siliguri', 'Open Sans', sans-serif;
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background-color: #4a6da7;
-            color: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            font-size: 28px;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 25px;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            font-size: 18px;
-        }
-        
-        nav ul li a:hover {
-            color: #8db5e0;
-        }
-        
-        .mission-header {
-            background-color: #4a6da7;
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-            margin-top: 20px;
-            border-radius: 8px;
-            position: relative;
-        }
-        
-        .sdg-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #7cb342;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .sdg-badge span {
-            font-size: 18px;
-            font-weight: bold;
-            display: block;
-        }
-        
-        .sdg-badge p {
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        
-        .mission-header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        
-        .mission-header p {
-            font-size: 18px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Hind Siliguri", "Open Sans", sans-serif;
+        background-color: #f5f7fa;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        background-color: #4a6da7;
+        color: white;
+        padding: 20px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .logo i {
+        margin-right: 10px;
+        font-size: 28px;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+      }
+
+      nav ul li {
+        margin-left: 25px;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+        font-size: 18px;
+      }
+
+      nav ul li a:hover {
+        color: #8db5e0;
+      }
+
+      .mission-header {
+        background-color: #4a6da7;
+        color: white;
+        padding: 30px 0;
+        text-align: center;
+        margin-top: 20px;
+        border-radius: 8px;
+        position: relative;
+      }
+
+      .sdg-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: #7cb342;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .sdg-badge span {
+        font-size: 18px;
+        font-weight: bold;
+        display: block;
+      }
+
+      .sdg-badge p {
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      .mission-header h1 {
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+
+      .mission-header p {
+        font-size: 18px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .content-section {
+        display: flex;
+        margin-top: 40px;
+        gap: 30px;
+      }
+
+      .reality-check {
+        flex: 1;
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .reality-check h2 {
+        color: #4a6da7;
+        font-size: 24px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+      }
+
+      .reality-check h2 i {
+        margin-right: 10px;
+        color: #7cb342;
+      }
+
+      .reality-check-content {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #7cb342;
+      }
+
+      .reality-check-content p {
+        margin-bottom: 15px;
+        font-style: italic;
+        font-size: 16px;
+      }
+
+      .reality-check-content p:last-child {
+        margin-bottom: 0;
+      }
+
+      .map-section {
+        flex: 1;
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .map-section h2 {
+        color: #4a6da7;
+        font-size: 24px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+      }
+
+      .map-section h2 i {
+        margin-right: 10px;
+        color: #7cb342;
+      }
+
+      .map-container {
+        background-color: #e8f5e9;
+        border-radius: 8px;
+        padding: 0;
+        text-align: center;
+        margin-bottom: 20px;
+        min-height: 300px;
+        position: relative;
+      }
+
+      #health-map {
+        height: 400px;
+        width: 100%;
+        border-radius: 8px;
+        z-index: 1;
+      }
+
+      .map-controls {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .map-control-btn {
+        background-color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .map-control-btn:hover {
+        background-color: #f0f0f0;
+      }
+
+      .map-legend {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 20px;
+      }
+
+      .map-legend h4 {
+        color: #4a6da7;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .legend-items {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        margin: 5px 10px;
+        cursor: pointer;
+      }
+
+      .legend-color {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+
+      .legend-color.hospital {
+        background-color: #f44336;
+      }
+
+      .legend-color.clinic {
+        background-color: #2196f3;
+      }
+
+      .legend-color.mental {
+        background-color: #9c27b0;
+      }
+
+      .facility-list {
+        margin-top: 40px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .facility-list h2 {
+        color: #4a6da7;
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .facility-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .facility-card {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 20px;
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        transition: transform 0.3s;
+        border-left: 4px solid #7cb342;
+        cursor: pointer;
+      }
+
+      .facility-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .facility-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        flex-shrink: 0;
+      }
+
+      .facility-icon.hospital {
+        background-color: #f44336;
+      }
+
+      .facility-icon.clinic {
+        background-color: #2196f3;
+      }
+
+      .facility-icon.mental {
+        background-color: #9c27b0;
+      }
+
+      .facility-info h3 {
+        color: #4a6da7;
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+
+      .facility-info p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+      }
+
+      .facility-info p i {
+        margin-right: 8px;
+        color: #7cb342;
+        width: 16px;
+      }
+
+      .facility-type {
+        display: inline-block;
+        background-color: #e8f5e9;
+        color: #7cb342;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-top: 8px;
+      }
+
+      .help-text {
+        background-color: #e8f5e9;
+        border-left: 4px solid #7cb342;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+
+      .help-text i {
+        color: #7cb342;
+        margin-right: 10px;
+      }
+
+      .key-features {
+        margin-top: 20px;
+      }
+
+      .key-features h3 {
+        color: #4a6da7;
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 15px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+      }
+
+      .feature-item i {
+        color: #7cb342;
+        margin-right: 10px;
+        font-size: 20px;
+        margin-top: 2px;
+      }
+
+      .feature-item h4 {
+        color: #4a6da7;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .feature-item p {
+        font-size: 14px;
+        color: #666;
+        margin: 0;
+      }
+
+      footer {
+        margin-top: 40px;
+        background-color: #333;
+        color: white;
+        padding: 30px 0;
+        text-align: center;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .footer-section {
+        flex: 1;
+        padding: 0 15px;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 8px;
+      }
+
+      .footer-section ul li a {
+        color: #ccc;
+        text-decoration: none;
+      }
+
+      .footer-section ul li a:hover {
+        color: white;
+      }
+
+      .copyright {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #555;
+        font-size: 14px;
+        color: #aaa;
+      }
+
+      .language-toggle {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      .language-toggle:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .bengali {
+        display: none;
+      }
+
+      .english {
+        display: block;
+      }
+
+      /* Custom popup styles */
+      .leaflet-popup-content-wrapper {
+        border-radius: 8px;
+        box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+      }
+
+      .leaflet-popup-content {
+        margin: 15px;
+        min-width: 200px;
+      }
+
+      .popup-title {
+        font-weight: bold;
+        color: #4a6da7;
+        margin-bottom: 8px;
+        font-size: 16px;
+      }
+
+      .popup-info {
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+
+      .popup-info i {
+        color: #7cb342;
+        margin-right: 5px;
+        width: 16px;
+      }
+
+      .popup-type {
+        display: inline-block;
+        background-color: #e8f5e9;
+        color: #7cb342;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-top: 8px;
+      }
+
+      @media (max-width: 992px) {
         .content-section {
-            display: flex;
-            margin-top: 40px;
-            gap: 30px;
+          flex-direction: column;
         }
-        
-        .reality-check {
-            flex: 1;
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        
-        .reality-check h2 {
-            color: #4a6da7;
-            font-size: 24px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .reality-check h2 i {
-            margin-right: 10px;
-            color: #7cb342;
-        }
-        
-        .reality-check-content {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #7cb342;
-        }
-        
-        .reality-check-content p {
-            margin-bottom: 15px;
-            font-style: italic;
-            font-size: 16px;
-        }
-        
-        .reality-check-content p:last-child {
-            margin-bottom: 0;
-        }
-        
-        .map-section {
-            flex: 1;
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        
-        .map-section h2 {
-            color: #4a6da7;
-            font-size: 24px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .map-section h2 i {
-            margin-right: 10px;
-            color: #7cb342;
-        }
-        
-        .map-container {
-            background-color: #e8f5e9;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 20px;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .map-container i {
-            font-size: 48px;
-            color: #4a6da7;
-            margin-bottom: 15px;
-        }
-        
-        .map-container h3 {
-            color: #4a6da7;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        
-        .map-container p {
-            color: #666;
-            font-size: 16px;
-        }
-        
-        .map-legend {
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 20px;
-        }
-        
-        .map-legend h4 {
-            color: #4a6da7;
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        
-        .legend-items {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-        
-        .legend-item {
-            display: flex;
-            align-items: center;
-            margin: 5px 10px;
-        }
-        
-        .legend-color {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-right: 8px;
-        }
-        
-        .legend-color.hospital {
-            background-color: #f44336;
-        }
-        
-        .legend-color.clinic {
-            background-color: #2196f3;
-        }
-        
-        .legend-color.mental {
-            background-color: #9c27b0;
-        }
-        
-        .facility-list {
-            margin-top: 40px;
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        
-        .facility-list h2 {
-            color: #4a6da7;
-            font-size: 24px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
+
         .facility-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+          grid-template-columns: 1fr;
         }
-        
-        .facility-card {
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            padding: 20px;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            transition: transform 0.3s;
-            border-left: 4px solid #7cb342;
+      }
+
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          text-align: center;
         }
-        
-        .facility-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+
+        nav ul {
+          margin-top: 15px;
+          justify-content: center;
         }
-        
-        .facility-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            flex-shrink: 0;
+
+        nav ul li {
+          margin: 0 10px;
         }
-        
-        .facility-icon.hospital {
-            background-color: #f44336;
+
+        .sdg-badge {
+          position: static;
+          margin-top: 20px;
+          display: inline-block;
         }
-        
-        .facility-icon.clinic {
-            background-color: #2196f3;
-        }
-        
-        .facility-icon.mental {
-            background-color: #9c27b0;
-        }
-        
-        .facility-info h3 {
-            color: #4a6da7;
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-        
-        .facility-info p {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .facility-info p i {
-            margin-right: 8px;
-            color: #7cb342;
-            width: 16px;
-        }
-        
-        .facility-type {
-            display: inline-block;
-            background-color: #e8f5e9;
-            color: #7cb342;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-top: 8px;
-        }
-        
-        .help-text {
-            background-color: #e8f5e9;
-            border-left: 4px solid #7cb342;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        
-        .help-text i {
-            color: #7cb342;
-            margin-right: 10px;
-        }
-        
-        .key-features {
-            margin-top: 20px;
-        }
-        
-        .key-features h3 {
-            color: #4a6da7;
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-        
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-        }
-        
-        .feature-item i {
-            color: #7cb342;
-            margin-right: 10px;
-            font-size: 20px;
-            margin-top: 2px;
-        }
-        
-        .feature-item h4 {
-            color: #4a6da7;
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-        
-        .feature-item p {
-            font-size: 14px;
-            color: #666;
-            margin: 0;
-        }
-        
-        footer {
-            margin-top: 40px;
-            background-color: #333;
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-        }
-        
+
         .footer-content {
-            display: flex;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+          flex-direction: column;
+          text-align: center;
         }
-        
+
         .footer-section {
-            flex: 1;
-            padding: 0 15px;
+          margin-bottom: 20px;
         }
-        
-        .footer-section h3 {
-            margin-bottom: 15px;
-            font-size: 18px;
+
+        #health-map {
+          height: 300px;
         }
-        
-        .footer-section ul {
-            list-style: none;
-        }
-        
-        .footer-section ul li {
-            margin-bottom: 8px;
-        }
-        
-        .footer-section ul li a {
-            color: #ccc;
-            text-decoration: none;
-        }
-        
-        .footer-section ul li a:hover {
-            color: white;
-        }
-        
-        .copyright {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #555;
-            font-size: 14px;
-            color: #aaa;
-        }
-        
-        .language-toggle {
-            background-color: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-        
-        .language-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        .bengali {
-            display: none;
-        }
-        
-        .english {
-            display: block;
-        }
-        
-        @media (max-width: 992px) {
-            .content-section {
-                flex-direction: column;
-            }
-            
-            .facility-cards {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            nav ul {
-                margin-top: 15px;
-                justify-content: center;
-            }
-            
-            nav ul li {
-                margin: 0 10px;
-            }
-            
-            .sdg-badge {
-                position: static;
-                margin-top: 20px;
-                display: inline-block;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .footer-section {
-                margin-bottom: 20px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="header-content">
-            <div class="logo">
-                <i class="fas fa-brain"></i>
-                <span class="english">MindBridge</span>
-                <span class="bengali">মাইন্ডব্রিজ</span>
-            </div>
-            
-            <nav>
-                <ul>
-                    <li><a href="index.html">
-                        <span class="english">Home</span>
-                        <span class="bengali">হোম</span>
-                    </a></li>
-                    <li><a href="missions.html">
-                        <span class="english">Missions</span>
-                        <span class="bengali">মিশন</span>
-                    </a></li>
-                    <li><a href="resources.html">
-                        <span class="english">Resources</span>
-                        <span class="bengali">সম্পদ</span>
-                    </a></li>
-                    <li><a href="about.html">
-                        <span class="english">About</span>
-                        <span class="bengali">আমাদের সম্পর্কে</span>
-                    </a></li>
-                    <li><button class="language-toggle" onclick="toggleLanguage()">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-brain"></i>
+          <span class="english">MindBridge</span>
+          <span class="bengali">মাইন্ডব্রিজ</span>
+        </div>
+
+        <nav>
+          <ul>
+            <li>
+              <a href="index.html">
+                <span class="english">Home</span>
+                <span class="bengali">হোম</span>
+              </a>
+            </li>
+            <li>
+              <a href="missions.html">
+                <span class="english">Missions</span>
+                <span class="bengali">মিশন</span>
+              </a>
+            </li>
+            <li>
+              <a href="resources.html">
+                <span class="english">Resources</span>
+                <span class="bengali">সম্পদ</span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html">
+                <span class="english">About</span>
+                <span class="bengali">আমাদের সম্পর্কে</span>
+              </a>
+            </li>
+            <li>
+              <button class="language-toggle" onclick="toggleLanguage()">
                 <span class="english">বাংলা</span>
                 <span class="bengali">English</span>
-            </button></li>
-                </ul>
-            </nav>
-        </div>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <div class="container">
-        <div class="mission-header">
-            <h1>
-                <span class="english">Community Health Map</span>
-                <span class="bengali">সম্প্রদায় স্বাস্থ্য মানচিত্র</span>
-            </h1>
+      <div class="mission-header">
+        <h1>
+          <span class="english">Community Health Map</span>
+          <span class="bengali">সম্প্রদায় স্বাস্থ্য মানচিত্র</span>
+        </h1>
+        <p>
+          <span class="english"
+            >Building rural healthcare accessibility through interactive
+            mapping</span
+          >
+          <span class="bengali"
+            >ইন্টারেক্টিভ ম্যাপিংয়ের মাধ্যমে গ্রামীণ স্বাস্থ্যসেবা
+            অ্যাক্সেসিবিলিটি তৈরি করা</span
+          >
+        </p>
+        <div class="sdg-badge">
+          <span>SDG 3.8</span>
+          <p>
+            <span class="english">Universal Health Coverage</span>
+            <span class="bengali">সার্বজনীন স্বাস্থ্য কভারেজ</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="reality-check">
+          <h2>
+            <i class="fas fa-user-circle"></i>
+            <span class="english">Hablu's Reality Check</span>
+            <span class="bengali">হাবলুর বাস্তবতা পরীক্ষা</span>
+          </h2>
+          <div class="reality-check-content">
             <p>
-                <span class="english">Building rural healthcare accessibility through interactive mapping</span>
-                <span class="bengali">ইন্টারেক্টিভ ম্যাপিংয়ের মাধ্যমে গ্রামীণ স্বাস্থ্যসেবা অ্যাক্সেসিবিলিটি তৈরি করা</span>
+              <span class="english"
+                >"When I needed help the most, I didn't know where to go. The
+                nearest mental health support was 45km away, and I had no way to
+                get there."</span
+              >
+              <span class="bengali"
+                >"যখন আমি সবচেয়ে বেশি সাহায্য প্রয়োজন, তখন আমি জানতাম না
+                কোথায় যাব। নিকটতম মানসিক স্বাস্থ্য সহায়তা ছিল 45 কিমি দূরে,
+                এবং সেখানে যাওয়ার কোনো উপায় ছিল না।"</span
+              >
             </p>
-            <div class="sdg-badge">
-                <span>SDG 3.8</span>
+            <p>
+              <span class="english"
+                >"Even our local community clinic didn't have anyone trained in
+                mental health. They could only treat physical illnesses."</span
+              >
+              <span class="bengali"
+                >"এমনকি আমাদের স্থানীয় সম্প্রদায় ক্লিনিকেও মানসিক স্বাস্থ্যে
+                প্রশিক্ষিত কেউ ছিল না। তারা শুধু শারীরিক রোগ চিকিৎসা করতে
+                পারত।"</span
+              >
+            </p>
+            <p>
+              <span class="english"
+                >"If we had a map showing all healthcare facilities, including
+                those with mental health support, it would have made a huge
+                difference."</span
+              >
+              <span class="bengali"
+                >"যদি আমাদের একটি মানচিত্র থাকত যা সমস্ত স্বাস্থ্যসেবা সুবিধা
+                দেখাত, যার মধ্যে মানসিক স্বাস্থ্য সহায়তাও অন্তর্ভুক্ত, তবে এটি
+                বিশাল পার্থক্য তৈরি করত।"</span
+              >
+            </p>
+          </div>
+
+          <div class="key-features">
+            <h3>
+              <span class="english">Key Features</span>
+              <span class="bengali">মূল বৈশিষ্ট্য</span>
+            </h3>
+            <div class="feature-item">
+              <i class="fas fa-wifi-slash"></i>
+              <div>
+                <h4>
+                  <span class="english">Offline Capability</span>
+                  <span class="bengali">অফলাইন ক্ষমতা</span>
+                </h4>
                 <p>
-                    <span class="english">Universal Health Coverage</span>
-                    <span class="bengali">সার্বজনীন স্বাস্থ্য কভারেজ</span>
+                  <span class="english"
+                    >Access health facility information even without internet
+                    connection</span
+                  >
+                  <span class="bengali"
+                    >ইন্টারনেট সংযোগ ছাড়াও স্বাস্থ্য সুবিধা তথ্য অ্যাক্সেস
+                    করুন</span
+                  >
                 </p>
+              </div>
             </div>
+            <div class="feature-item">
+              <i class="fas fa-mobile-alt"></i>
+              <div>
+                <h4>
+                  <span class="english">Simple Navigation</span>
+                  <span class="bengali">সহজ নেভিগেশন</span>
+                </h4>
+                <p>
+                  <span class="english"
+                    >Easy-to-use interface designed for rural users</span
+                  >
+                  <span class="bengali"
+                    >গ্রামীণ ব্যবহারকারীদের জন্য সহজে-ব্যবহারযোগ্য
+                    ইন্টারফেস</span
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-language"></i>
+              <div>
+                <h4>
+                  <span class="english">Local Language Support</span>
+                  <span class="bengali">স্থানীয় ভাষা সমর্থন</span>
+                </h4>
+                <p>
+                  <span class="english">Available in Bengali and English</span>
+                  <span class="bengali">বাংলা এবং ইংরেজিতে উপলব্ধ</span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="content-section">
-            <div class="reality-check">
-                <h2>
-                    <i class="fas fa-user-circle"></i>
-                    <span class="english">Hablu's Reality Check</span>
-                    <span class="bengali">হাবলুর বাস্তবতা পরীক্ষা</span>
-                </h2>
-                <div class="reality-check-content">
-                    <p>
-                        <span class="english">"When I needed help the most, I didn't know where to go. The nearest mental health support was 45km away, and I had no way to get there."</span>
-                        <span class="bengali">"যখন আমি সবচেয়ে বেশি সাহায্য প্রয়োজন, তখন আমি জানতাম না কোথায় যাব। নিকটতম মানসিক স্বাস্থ্য সহায়তা ছিল 45 কিমি দূরে, এবং সেখানে যাওয়ার কোনো উপায় ছিল না।"</span>
-                    </p>
-                    <p>
-                        <span class="english">"Even our local community clinic didn't have anyone trained in mental health. They could only treat physical illnesses."</span>
-                        <span class="bengali">"এমনকি আমাদের স্থানীয় সম্প্রদায় ক্লিনিকেও মানসিক স্বাস্থ্যে প্রশিক্ষিত কেউ ছিল না। তারা শুধু শারীরিক রোগ চিকিৎসা করতে পারত।"</span>
-                    </p>
-                    <p>
-                        <span class="english">"If we had a map showing all healthcare facilities, including those with mental health support, it would have made a huge difference."</span>
-                        <span class="bengali">"যদি আমাদের একটি মানচিত্র থাকত যা সমস্ত স্বাস্থ্যসেবা সুবিধা দেখাত, যার মধ্যে মানসিক স্বাস্থ্য সহায়তাও অন্তর্ভুক্ত, তবে এটি বিশাল পার্থক্য তৈরি করত।"</span>
-                    </p>
-                </div>
-                
-                <div class="key-features">
-                    <h3>
-                        <span class="english">Key Features</span>
-                        <span class="bengali">মূল বৈশিষ্ট্য</span>
-                    </h3>
-                    <div class="feature-item">
-                        <i class="fas fa-wifi-slash"></i>
-                        <div>
-                            <h4>
-                                <span class="english">Offline Capability</span>
-                                <span class="bengali">অফলাইন ক্ষমতা</span>
-                            </h4>
-                            <p>
-                                <span class="english">Access health facility information even without internet connection</span>
-                                <span class="bengali">ইন্টারনেট সংযোগ ছাড়াও স্বাস্থ্য সুবিধা তথ্য অ্যাক্সেস করুন</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-mobile-alt"></i>
-                        <div>
-                            <h4>
-                                <span class="english">Simple Navigation</span>
-                                <span class="bengali">সহজ নেভিগেশন</span>
-                            </h4>
-                            <p>
-                                <span class="english">Easy-to-use interface designed for rural users</span>
-                                <span class="bengali">গ্রামীণ ব্যবহারকারীদের জন্য সহজে-ব্যবহারযোগ্য ইন্টারফেস</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-language"></i>
-                        <div>
-                            <h4>
-                                <span class="english">Local Language Support</span>
-                                <span class="bengali">স্থানীয় ভাষা সমর্থন</span>
-                            </h4>
-                            <p>
-                                <span class="english">Available in Bengali and English</span>
-                                <span class="bengali">বাংলা এবং ইংরেজিতে উপলব্ধ</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="map-section">
+          <h2>
+            <i class="fas fa-map-marked-alt"></i>
+            <span class="english">Interactive Health Map</span>
+            <span class="bengali">ইন্টারেক্টিভ স্বাস্থ্য মানচিত্র</span>
+          </h2>
 
-            <div class="map-section">
-                <h2>
-                    <i class="fas fa-map-marked-alt"></i>
-                    <span class="english">Interactive Health Map</span>
-                    <span class="bengali">ইন্টারেক্টিভ স্বাস্থ্য মানচিত্র</span>
-                </h2>
-                
-                <div class="help-text">
-                    <i class="fas fa-info-circle"></i>
-                    <span class="english">Click on the map to find healthcare facilities near you. The map works offline once loaded.</span>
-                    <span class="bengali">আপনার কাছাকাছি স্বাস্থ্যসেবা সুবিধা খুঁজতে মানচিত্রে ক্লিক করুন। মানচিত্রটি একবার লোড হয়ে গেলে অফলাইনে কাজ করে।</span>
-                </div>
-                
-                <div class="map-container">
-                    <i class="fas fa-map"></i>
-                    <h3>
-                        <span class="english">Community Health Map</span>
-                        <span class="bengali">সম্প্রদায় স্বাস্থ্য মানচিত্র</span>
-                    </h3>
-                    <p>
-                        <span class="english">Click to explore healthcare facilities in your area</span>
-                        <span class="bengali">আপনার এলাকায় স্বাস্থ্যসেবা সুবিধা অন্বেষণ করতে ক্লিক করুন</span>
-                    </p>
-                </div>
-                
-                <div class="map-legend">
-                    <h4>
-                        <span class="english">Facility Types</span>
-                        <span class="bengali">সুবিধার ধরন</span>
-                    </h4>
-                    <div class="legend-items">
-                        <div class="legend-item">
-                            <span class="legend-color hospital"></span>
-                            <span>
-                                <span class="english">Hospital</span>
-                                <span class="bengali">হাসপাতাল</span>
-                            </span>
-                        </div>
-                        <div class="legend-item">
-                            <span class="legend-color clinic"></span>
-                            <span>
-                                <span class="english">Community Clinic</span>
-                                <span class="bengali">সম্প্রদায় ক্লিনিক</span>
-                            </span>
-                        </div>
-                        <div class="legend-item">
-                            <span class="legend-color mental"></span>
-                            <span>
-                                <span class="english">Mental Health Center</span>
-                                <span class="bengali">মানসিক স্বাস্থ্য কেন্দ্র</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+          <div class="help-text">
+            <i class="fas fa-info-circle"></i>
+            <span class="english"
+              >Click on the map to find healthcare facilities near you. The map
+              works offline once loaded.</span
+            >
+            <span class="bengali"
+              >আপনার কাছাকাছি স্বাস্থ্যসেবা সুবিধা খুঁজতে মানচিত্রে ক্লিক করুন।
+              মানচিত্রটি একবার লোড হয়ে গেলে অফলাইনে কাজ করে।</span
+            >
+          </div>
 
-        <div class="facility-list">
-            <h2>
-                <span class="english">Nearby Healthcare Facilities</span>
-                <span class="bengali">নিকটবর্তী স্বাস্থ্যসেবা সুবিধা</span>
-            </h2>
-            <div class="facility-cards">
-                <div class="facility-card">
-                    <div class="facility-icon hospital">
-                        <i class="fas fa-hospital"></i>
-                    </div>
-                    <div class="facility-info">
-                        <h3>
-                            <span class="english">Upazila Health Complex</span>
-                            <span class="bengali">উপজেলা স্বাস্থ্য কমপ্লেক্স</span>
-                        </h3>
-                        <p><i class="fas fa-map-marker-alt"></i>
-                            <span class="english">18km away</span>
-                            <span class="bengali">18 কিমি দূরে</span>
-                        </p>
-                        <p><i class="fas fa-phone"></i> +880 1234 567891</p>
-                        <p><i class="fas fa-clock"></i>
-                            <span class="english">24/7 Emergency</span>
-                            <span class="bengali">২৪/৭ জরুরি</span>
-                        </p>
-                        <span class="facility-type">
-                            <span class="english">Hospital</span>
-                            <span class="bengali">হাসপাতাল</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="facility-card">
-                    <div class="facility-icon clinic">
-                        <i class="fas fa-clinic-medical"></i>
-                    </div>
-                    <div class="facility-info">
-                        <h3>
-                            <span class="english">Community Clinic - Bagerhat</span>
-                            <span class="bengali">সম্প্রদায় ক্লিনিক - বাগেরহাট</span>
-                        </h3>
-                        <p><i class="fas fa-map-marker-alt"></i>
-                            <span class="english">12km away</span>
-                            <span class="bengali">12 কিমি দূরে</span>
-                        </p>
-                        <p><i class="fas fa-phone"></i> +880 1234 567890</p>
-                        <p><i class="fas fa-clock"></i>
-                            <span class="english">8AM - 2PM (Sat-Thu)</span>
-                            <span class="bengali">সকাল ৮টা - দুপুর ২টা (শনি-বৃহস্পতি)</span>
-                        </p>
-                        <span class="facility-type">
-                            <span class="english">Community Clinic</span>
-                            <span class="bengali">সম্প্রদায় ক্লিনিক</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="facility-card">
-                    <div class="facility-icon mental">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <div class="facility-info">
-                        <h3>
-                            <span class="english">Mental Health Support Center</span>
-                            <span class="bengali">মানসিক স্বাস্থ্য সহায়তা কেন্দ্র</span>
-                        </h3>
-                        <p><i class="fas fa-map-marker-alt"></i>
-                            <span class="english">45km away</span>
-                            <span class="bengali">45 কিমি দূরে</span>
-                        </p>
-                        <p><i class="fas fa-phone"></i> +880 1234 567892</p>
-                        <p><i class="fas fa-clock"></i>
-                            <span class="english">9AM - 5PM (Sun-Thu)</span>
-                            <span class="bengali">সকাল ৯টা - বিকেল ৫টা (রবি-বৃহস্পতি)</span>
-                        </p>
-                        <span class="facility-type">
-                            <span class="english">Mental Health</span>
-                            <span class="bengali">মানসিক স্বাস্থ্য</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="facility-card">
-                    <div class="facility-icon clinic">
-                        <i class="fas fa-clinic-medical"></i>
-                    </div>
-                    <div class="facility-info">
-                        <h3>
-                            <span class="english">Union Health Center</span>
-                            <span class="bengali">ইউনিয়ন স্বাস্থ্য কেন্দ্র</span>
-                        </h3>
-                        <p><i class="fas fa-map-marker-alt"></i>
-                            <span class="english">8km away</span>
-                            <span class="bengali">8 কিমি দূরে</span>
-                        </p>
-                        <p><i class="fas fa-phone"></i> +880 1234 567893</p>
-                        <p><i class="fas fa-clock"></i>
-                            <span class="english">9AM - 3PM (Sat-Thu)</span>
-                            <span class="bengali">সকাল ৯টা - দুপুর ৩টা (শনি-বৃহস্পতি)</span>
-                        </p>
-                        <span class="facility-type">
-                            <span class="english">Community Clinic</span>
-                            <span class="bengali">সম্প্রদায় ক্লিনিক</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="facility-card">
-                    <div class="facility-icon hospital">
-                        <i class="fas fa-hospital"></i>
-                    </div>
-                    <div class="facility-info">
-                        <h3>
-                            <span class="english">District Hospital</span>
-                            <span class="bengali">জেলা হাসপাতাল</span>
-                        </h3>
-                        <p><i class="fas fa-map-marker-alt"></i>
-                            <span class="english">35km away</span>
-                            <span class="bengali">35 কিমি দূরে</span>
-                        </p>
-                        <p><i class="fas fa-phone"></i> +880 1234 567894</p>
-                        <p><i class="fas fa-clock"></i>
-                            <span class="english">24/7 Emergency</span>
-                            <span class="bengali">২৪/৭ জরুরি</span>
-                        </p>
-                        <span class="facility-type">
-                            <span class="english">Hospital</span>
-                            <span class="bengali">হাসপাতাল</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="facility-card">
-                    <div class="facility-icon mental">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <div class="facility-info">
-                        <h3>
-                            <span class="english">Counseling Center</span>
-                            <span class="bengali">কাউন্সেলিং সেন্টার</span>
-                        </h3>
-                        <p><i class="fas fa-map-marker-alt"></i>
-                            <span class="english">22km away</span>
-                            <span class="bengali">22 কিমি দূরে</span>
-                        </p>
-                        <p><i class="fas fa-phone"></i> +880 1234 567895</p>
-                        <p><i class="fas fa-clock"></i>
-                            <span class="english">10AM - 6PM (Sun-Thu)</span>
-                            <span class="bengali">সকাল ১০টা - বিকেল ৬টা (রবি-বৃহস্পতি)</span>
-                        </p>
-                        <span class="facility-type">
-                            <span class="english">Mental Health</span>
-                            <span class="bengali">মানসিক স্বাস্থ্য</span>
-                        </span>
-                    </div>
-                </div>
+          <div class="map-container">
+            <div id="health-map"></div>
+            <div class="map-controls">
+              <button
+                class="map-control-btn"
+                id="locate-btn"
+                title="Find your location"
+              >
+                <i class="fas fa-crosshairs"></i>
+              </button>
+              <button class="map-control-btn" id="zoom-in-btn" title="Zoom in">
+                <i class="fas fa-plus"></i>
+              </button>
+              <button
+                class="map-control-btn"
+                id="zoom-out-btn"
+                title="Zoom out"
+              >
+                <i class="fas fa-minus"></i>
+              </button>
             </div>
+          </div>
+
+          <div class="map-legend">
+            <h4>
+              <span class="english">Facility Types</span>
+              <span class="bengali">সুবিধার ধরন</span>
+            </h4>
+            <div class="legend-items">
+              <div class="legend-item" data-type="hospital">
+                <span class="legend-color hospital"></span>
+                <span>
+                  <span class="english">Hospital</span>
+                  <span class="bengali">হাসপাতাল</span>
+                </span>
+              </div>
+              <div class="legend-item" data-type="clinic">
+                <span class="legend-color clinic"></span>
+                <span>
+                  <span class="english">Community Clinic</span>
+                  <span class="bengali">সম্প্রদায় ক্লিনিক</span>
+                </span>
+              </div>
+              <div class="legend-item" data-type="mental">
+                <span class="legend-color mental"></span>
+                <span>
+                  <span class="english">Mental Health Center</span>
+                  <span class="bengali">মানসিক স্বাস্থ্য কেন্দ্র</span>
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="facility-list">
+        <h2>
+          <span class="english">Nearby Healthcare Facilities</span>
+          <span class="bengali">নিকটবর্তী স্বাস্থ্যসেবা সুবিধা</span>
+        </h2>
+        <div class="facility-cards">
+          <div
+            class="facility-card"
+            data-id="1"
+            data-type="hospital"
+            data-lat="22.8456"
+            data-lng="89.5403"
+          >
+            <div class="facility-icon hospital">
+              <i class="fas fa-hospital"></i>
+            </div>
+            <div class="facility-info">
+              <h3>
+                <span class="english">Upazila Health Complex</span>
+                <span class="bengali">উপজেলা স্বাস্থ্য কমপ্লেক্স</span>
+              </h3>
+              <p>
+                <i class="fas fa-map-marker-alt"></i>
+                <span class="english">18km away</span>
+                <span class="bengali">18 কিমি দূরে</span>
+              </p>
+              <p><i class="fas fa-phone"></i> +880 1234 567891</p>
+              <p>
+                <i class="fas fa-clock"></i>
+                <span class="english">24/7 Emergency</span>
+                <span class="bengali">২৪/৭ জরুরি</span>
+              </p>
+              <span class="facility-type">
+                <span class="english">Hospital</span>
+                <span class="bengali">হাসপাতাল</span>
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="facility-card"
+            data-id="2"
+            data-type="clinic"
+            data-lat="22.8256"
+            data-lng="89.5203"
+          >
+            <div class="facility-icon clinic">
+              <i class="fas fa-clinic-medical"></i>
+            </div>
+            <div class="facility-info">
+              <h3>
+                <span class="english">Community Clinic - Bagerhat</span>
+                <span class="bengali">সম্প্রদায় ক্লিনিক - বাগেরহাট</span>
+              </h3>
+              <p>
+                <i class="fas fa-map-marker-alt"></i>
+                <span class="english">12km away</span>
+                <span class="bengali">12 কিমি দূরে</span>
+              </p>
+              <p><i class="fas fa-phone"></i> +880 1234 567890</p>
+              <p>
+                <i class="fas fa-clock"></i>
+                <span class="english">8AM - 2PM (Sat-Thu)</span>
+                <span class="bengali">সকাল ৮টা - দুপুর ২টা (শনি-বৃহস্পতি)</span>
+              </p>
+              <span class="facility-type">
+                <span class="english">Community Clinic</span>
+                <span class="bengali">সম্প্রদায় ক্লিনিক</span>
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="facility-card"
+            data-id="3"
+            data-type="mental"
+            data-lat="22.9056"
+            data-lng="89.5803"
+          >
+            <div class="facility-icon mental">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="facility-info">
+              <h3>
+                <span class="english">Mental Health Support Center</span>
+                <span class="bengali">মানসিক স্বাস্থ্য সহায়তা কেন্দ্র</span>
+              </h3>
+              <p>
+                <i class="fas fa-map-marker-alt"></i>
+                <span class="english">45km away</span>
+                <span class="bengali">45 কিমি দূরে</span>
+              </p>
+              <p><i class="fas fa-phone"></i> +880 1234 567892</p>
+              <p>
+                <i class="fas fa-clock"></i>
+                <span class="english">9AM - 5PM (Sun-Thu)</span>
+                <span class="bengali">সকাল ৯টা - বিকেল ৫টা (রবি-বৃহস্পতি)</span>
+              </p>
+              <span class="facility-type">
+                <span class="english">Mental Health</span>
+                <span class="bengali">মানসিক স্বাস্থ্য</span>
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="facility-card"
+            data-id="4"
+            data-type="clinic"
+            data-lat="22.8156"
+            data-lng="89.5103"
+          >
+            <div class="facility-icon clinic">
+              <i class="fas fa-clinic-medical"></i>
+            </div>
+            <div class="facility-info">
+              <h3>
+                <span class="english">Union Health Center</span>
+                <span class="bengali">ইউনিয়ন স্বাস্থ্য কেন্দ্র</span>
+              </h3>
+              <p>
+                <i class="fas fa-map-marker-alt"></i>
+                <span class="english">8km away</span>
+                <span class="bengali">8 কিমি দূরে</span>
+              </p>
+              <p><i class="fas fa-phone"></i> +880 1234 567893</p>
+              <p>
+                <i class="fas fa-clock"></i>
+                <span class="english">9AM - 3PM (Sat-Thu)</span>
+                <span class="bengali">সকাল ৯টা - দুপুর ৩টা (শনি-বৃহস্পতি)</span>
+              </p>
+              <span class="facility-type">
+                <span class="english">Community Clinic</span>
+                <span class="bengali">সম্প্রদায় ক্লিনিক</span>
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="facility-card"
+            data-id="5"
+            data-type="hospital"
+            data-lat="22.8856"
+            data-lng="89.5603"
+          >
+            <div class="facility-icon hospital">
+              <i class="fas fa-hospital"></i>
+            </div>
+            <div class="facility-info">
+              <h3>
+                <span class="english">District Hospital</span>
+                <span class="bengali">জেলা হাসপাতাল</span>
+              </h3>
+              <p>
+                <i class="fas fa-map-marker-alt"></i>
+                <span class="english">35km away</span>
+                <span class="bengali">35 কিমি দূরে</span>
+              </p>
+              <p><i class="fas fa-phone"></i> +880 1234 567894</p>
+              <p>
+                <i class="fas fa-clock"></i>
+                <span class="english">24/7 Emergency</span>
+                <span class="bengali">২৪/৭ জরুরি</span>
+              </p>
+              <span class="facility-type">
+                <span class="english">Hospital</span>
+                <span class="bengali">হাসপাতাল</span>
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="facility-card"
+            data-id="6"
+            data-type="mental"
+            data-lat="22.8656"
+            data-lng="89.5503"
+          >
+            <div class="facility-icon mental">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="facility-info">
+              <h3>
+                <span class="english">Counseling Center</span>
+                <span class="bengali">কাউন্সেলিং সেন্টার</span>
+              </h3>
+              <p>
+                <i class="fas fa-map-marker-alt"></i>
+                <span class="english">22km away</span>
+                <span class="bengali">22 কিমি দূরে</span>
+              </p>
+              <p><i class="fas fa-phone"></i> +880 1234 567895</p>
+              <p>
+                <i class="fas fa-clock"></i>
+                <span class="english">10AM - 6PM (Sun-Thu)</span>
+                <span class="bengali"
+                  >সকাল ১০টা - বিকেল ৬টা (রবি-বৃহস্পতি)</span
+                >
+              </p>
+              <span class="facility-type">
+                <span class="english">Mental Health</span>
+                <span class="bengali">মানসিক স্বাস্থ্য</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>
-                    <span class="english">About MindBridge</span>
-                    <span class="bengali">মাইন্ডব্রিজ সম্পর্কে</span>
-                </h3>
-                <p>
-                    <span class="english">We're dedicated to bridging the mental healthcare gap in rural Bangladesh through technology and community engagement.</span>
-                    <span class="bengali">আমরা প্রযুক্তি এবং সম্প্রদায়ের সম্পৃক্ততার মাধ্যমে গ্রামীণ বাংলাদেশে মানসিক স্বাস্থ্যসেবা ব্যবধান পূরণের জন্য নিবেদিত।</span>
-                </p>
-            </div>
-            <div class="footer-section">
-                <h3>
-                    <span class="english">Quick Links</span>
-                    <span class="bengali">দ্রুত লিঙ্ক</span>
-                </h3>
-                <ul>
-                    <li><a href="index.html">
-                        <span class="english">Home</span>
-                        <span class="bengali">হোম</span>
-                    </a></li>
-                    <li><a href="mission1.html">
-                        <span class="english">Mental Health Check-In</span>
-                        <span class="bengali">মানসিক স্বাস্থ্য পরীক্ষা</span>
-                    </a></li>
-                    <li><a href="mission2.html">
-                        <span class="english">Community Health Map</span>
-                        <span class="bengali">সম্প্রদায় স্বাস্থ্য মানচিত্র</span>
-                    </a></li>
-                    <li><a href="resources.html">
-                        <span class="english">Resources</span>
-                        <span class="bengali">সম্পদ</span>
-                    </a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>
-                    <span class="english">Contact Us</span>
-                    <span class="bengali">যোগাযোগ করুন</span>
-                </h3>
-                <ul>
-                    <li><i class="fas fa-envelope"></i> info@mindbridge.org</li>
-                    <li><i class="fas fa-phone"></i> +880 1234 567890</li>
-                    <li>
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span class="english">Dhaka, Bangladesh</span>
-                        <span class="bengali">ঢাকা, বাংলাদেশ</span>
-                    </li>
-                </ul>
-            </div>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>
+            <span class="english">About MindBridge</span>
+            <span class="bengali">মাইন্ডব্রিজ সম্পর্কে</span>
+          </h3>
+          <p>
+            <span class="english"
+              >We're dedicated to bridging the mental healthcare gap in rural
+              Bangladesh through technology and community engagement.</span
+            >
+            <span class="bengali"
+              >আমরা প্রযুক্তি এবং সম্প্রদায়ের সম্পৃক্ততার মাধ্যমে গ্রামীণ
+              বাংলাদেশে মানসিক স্বাস্থ্যসেবা ব্যবধান পূরণের জন্য নিবেদিত।</span
+            >
+          </p>
         </div>
-        <div class="copyright">
-            <p>
-                &copy; 2023 MindBridge.
-                <span class="english">All rights reserved.</span>
-                <span class="bengali">সর্বস্বত্ব সংরক্ষিত।</span>
-                <span class="english">Hackathon Project</span>
-                <span class="bengali">হ্যাকাথন প্রকল্প</span>
-            </p>
+        <div class="footer-section">
+          <h3>
+            <span class="english">Quick Links</span>
+            <span class="bengali">দ্রুত লিঙ্ক</span>
+          </h3>
+          <ul>
+            <li>
+              <a href="index.html">
+                <span class="english">Home</span>
+                <span class="bengali">হোম</span>
+              </a>
+            </li>
+            <li>
+              <a href="mission1.html">
+                <span class="english">Mental Health Check-In</span>
+                <span class="bengali">মানসিক স্বাস্থ্য পরীক্ষা</span>
+              </a>
+            </li>
+            <li>
+              <a href="mission2.html">
+                <span class="english">Community Health Map</span>
+                <span class="bengali">সম্প্রদায় স্বাস্থ্য মানচিত্র</span>
+              </a>
+            </li>
+            <li>
+              <a href="resources.html">
+                <span class="english">Resources</span>
+                <span class="bengali">সম্পদ</span>
+              </a>
+            </li>
+          </ul>
         </div>
+        <div class="footer-section">
+          <h3>
+            <span class="english">Contact Us</span>
+            <span class="bengali">যোগাযোগ করুন</span>
+          </h3>
+          <ul>
+            <li><i class="fas fa-envelope"></i> info@mindbridge.org</li>
+            <li><i class="fas fa-phone"></i> +880 1234 567890</li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span class="english">Dhaka, Bangladesh</span>
+              <span class="bengali">ঢাকা, বাংলাদেশ</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>
+          &copy; 2023 MindBridge.
+          <span class="english">All rights reserved.</span>
+          <span class="bengali">সর্বস্বত্ব সংরক্ষিত।</span>
+          <span class="english">Hackathon Project</span>
+          <span class="bengali">হ্যাকাথন প্রকল্প</span>
+        </p>
+      </div>
     </footer>
+
+    <!-- Leaflet JS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
     <script>
-function toggleLanguage() {
-    const englishTexts = document.querySelectorAll('.english');
-    const bengaliTexts = document.querySelectorAll('.bengali');
+      // Language toggle functionality
+      function toggleLanguage() {
+        const englishTexts = document.querySelectorAll(".english");
+        const bengaliTexts = document.querySelectorAll(".bengali");
 
-    // Check current state
-    const isEnglish = englishTexts[0].style.display !== 'none';
+        // Check current state
+        const isEnglish = englishTexts[0].style.display !== "none";
 
-    if (isEnglish) {
-        // Hide English, show Bengali
-        englishTexts.forEach(el => el.style.display = 'none');
-        bengaliTexts.forEach(el => el.style.display = 'inline');
-    } else {
-        // Show English, hide Bengali
-        englishTexts.forEach(el => el.style.display = 'inline');
-        bengaliTexts.forEach(el => el.style.display = 'none');
-    }
-}
-</script>
+        if (isEnglish) {
+          // Hide English, show Bengali
+          englishTexts.forEach((el) => (el.style.display = "none"));
+          bengaliTexts.forEach((el) => (el.style.display = "inline"));
+        } else {
+          // Show English, hide Bengali
+          englishTexts.forEach((el) => (el.style.display = "inline"));
+          bengaliTexts.forEach((el) => (el.style.display = "none"));
+        }
+      }
 
-</body>
+      // Initialize map
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set initial language state
+        document
+          .querySelectorAll(".english")
+          .forEach((el) => (el.style.display = "inline"));
+        document
+          .querySelectorAll(".bengali")
+          .forEach((el) => (el.style.display = "none"));
+
+        // Initialize the map
+        const map = L.map("health-map").setView([22.8456, 89.5403], 10);
+
+        // Add tile layer
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          maxZoom: 18,
+        }).addTo(map);
+
+        // Custom icons for different facility types
+        const hospitalIcon = L.divIcon({
+          html: '<div style="background-color: #f44336; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"><i class="fas fa-hospital"></i></div>',
+          iconSize: [30, 30],
+          className: "custom-div-icon",
+        });
+
+        const clinicIcon = L.divIcon({
+          html: '<div style="background-color: #2196f3; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"><i class="fas fa-clinic-medical"></i></div>',
+          iconSize: [30, 30],
+          className: "custom-div-icon",
+        });
+
+        const mentalIcon = L.divIcon({
+          html: '<div style="background-color: #9c27b0; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"><i class="fas fa-brain"></i></div>',
+          iconSize: [30, 30],
+          className: "custom-div-icon",
+        });
+
+        // Array to store markers
+        const markers = [];
+
+        // Add markers for each facility
+        document.querySelectorAll(".facility-card").forEach((card) => {
+          const id = card.dataset.id;
+          const type = card.dataset.type;
+          const lat = parseFloat(card.dataset.lat);
+          const lng = parseFloat(card.dataset.lng);
+
+          // Get facility details
+          const titleElement = card.querySelector("h3");
+          const titleEn = titleElement.querySelector(".english").textContent;
+          const titleBn = titleElement.querySelector(".bengali").textContent;
+
+          const distanceElement = card.querySelector(
+            ".facility-info p:first-child"
+          );
+          const distanceEn =
+            distanceElement.querySelector(".english").textContent;
+          const distanceBn =
+            distanceElement.querySelector(".bengali").textContent;
+
+          const phoneElement = card.querySelectorAll(".facility-info p")[1];
+          const phone = phoneElement.textContent.trim();
+
+          const hoursElement = card.querySelectorAll(".facility-info p")[2];
+          const hoursEn = hoursElement.querySelector(".english").textContent;
+          const hoursBn = hoursElement.querySelector(".bengali").textContent;
+
+          const typeElement = card.querySelector(".facility-type");
+          const typeEn = typeElement.querySelector(".english").textContent;
+          const typeBn = typeElement.querySelector(".bengali").textContent;
+
+          // Create popup content
+          const popupContent = `
+                    <div class="popup-title">
+                        <span class="english">${titleEn}</span>
+                        <span class="bengali" style="display:none">${titleBn}</span>
+                    </div>
+                    <div class="popup-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span class="english">${distanceEn}</span>
+                        <span class="bengali" style="display:none">${distanceBn}</span>
+                    </div>
+                    <div class="popup-info">
+                        <i class="fas fa-phone"></i> ${phone}
+                    </div>
+                    <div class="popup-info">
+                        <i class="fas fa-clock"></i>
+                        <span class="english">${hoursEn}</span>
+                        <span class="bengali" style="display:none">${hoursBn}</span>
+                    </div>
+                    <div class="popup-type">
+                        <span class="english">${typeEn}</span>
+                        <span class="bengali" style="display:none">${typeBn}</span>
+                    </div>
+                `;
+
+          // Determine which icon to use
+          let icon;
+          if (type === "hospital") {
+            icon = hospitalIcon;
+          } else if (type === "clinic") {
+            icon = clinicIcon;
+          } else if (type === "mental") {
+            icon = mentalIcon;
+          }
+
+          // Create and add marker
+          const marker = L.marker([lat, lng], { icon: icon }).addTo(map);
+          marker.bindPopup(popupContent);
+          marker.facilityId = id;
+          marker.facilityType = type;
+          markers.push(marker);
+        });
+
+        // Add user location marker
+        let userLocationMarker = null;
+
+        // Locate button functionality
+        document
+          .getElementById("locate-btn")
+          .addEventListener("click", function () {
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(
+                function (position) {
+                  const lat = position.coords.latitude;
+                  const lng = position.coords.longitude;
+
+                  // Remove previous user location marker if exists
+                  if (userLocationMarker) {
+                    map.removeLayer(userLocationMarker);
+                  }
+
+                  // Add user location marker
+                  const userIcon = L.divIcon({
+                    html: '<div style="background-color: #4CAF50; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"><i class="fas fa-user"></i></div>',
+                    iconSize: [30, 30],
+                    className: "custom-div-icon",
+                  });
+
+                  userLocationMarker = L.marker([lat, lng], {
+                    icon: userIcon,
+                  }).addTo(map);
+                  userLocationMarker.bindPopup(
+                    '<div class="popup-title"><span class="english">Your Location</span><span class="bengali" style="display:none">আপনার অবস্থান</span></div>'
+                  );
+
+                  // Center map on user location
+                  map.setView([lat, lng], 12);
+                },
+                function (error) {
+                  console.error("Error getting location: " + error.message);
+                  alert(
+                    "Unable to get your location. Please check your location settings."
+                  );
+                }
+              );
+            } else {
+              alert("Geolocation is not supported by your browser.");
+            }
+          });
+
+        // Zoom in button functionality
+        document
+          .getElementById("zoom-in-btn")
+          .addEventListener("click", function () {
+            map.zoomIn();
+          });
+
+        // Zoom out button functionality
+        document
+          .getElementById("zoom-out-btn")
+          .addEventListener("click", function () {
+            map.zoomOut();
+          });
+
+        // Legend filter functionality
+        document.querySelectorAll(".legend-item").forEach((item) => {
+          item.addEventListener("click", function () {
+            const type = this.dataset.type;
+
+            // Toggle visibility of markers based on type
+            markers.forEach((marker) => {
+              if (marker.facilityType === type) {
+                if (map.hasLayer(marker)) {
+                  map.removeLayer(marker);
+                  this.style.opacity = "0.5";
+                } else {
+                  marker.addTo(map);
+                  this.style.opacity = "1";
+                }
+              }
+            });
+          });
+        });
+
+        // Facility card click functionality
+        document.querySelectorAll(".facility-card").forEach((card) => {
+          card.addEventListener("click", function () {
+            const id = this.dataset.id;
+            const marker = markers.find((m) => m.facilityId === id);
+
+            if (marker) {
+              map.setView(marker.getLatLng(), 14);
+              marker.openPopup();
+            }
+          });
+        });
+
+        // Update popup language when language is toggled
+        const originalToggleLanguage = toggleLanguage;
+        toggleLanguage = function () {
+          originalToggleLanguage();
+
+          // Update all open popups
+          map.eachLayer(function (layer) {
+            if (layer instanceof L.Marker && layer.getPopup()) {
+              const popup = layer.getPopup();
+              const content = popup.getContent();
+
+              // Create a temporary div to parse the HTML
+              const tempDiv = document.createElement("div");
+              tempDiv.innerHTML = content;
+
+              // Toggle language in popup content
+              const englishElements = tempDiv.querySelectorAll(".english");
+              const bengaliElements = tempDiv.querySelectorAll(".bengali");
+
+              const isEnglish = englishElements[0].style.display !== "none";
+
+              if (isEnglish) {
+                englishElements.forEach((el) => (el.style.display = "none"));
+                bengaliElements.forEach((el) => (el.style.display = "inline"));
+              } else {
+                englishElements.forEach((el) => (el.style.display = "inline"));
+                bengaliElements.forEach((el) => (el.style.display = "none"));
+              }
+
+              // Update popup content
+              popup.setContent(tempDiv.innerHTML);
+            }
+          });
+        };
+      });
+    </script>
+  </body>
 </html>
