@@ -236,7 +236,7 @@
 </head>
 <body>
 
-    <!-- Language Toggle Buttons -->
+    
     <div class="lang-switch">
         <button id="lang-en" class="active">EN</button>
         <button id="lang-bn">BN</button>
@@ -273,7 +273,7 @@
                     </div>
                 </div>
 
-                <!-- Volunteer 2 -->
+               
                 <div class="volunteer-card">
                     <div class="volunteer-avatar">👨‍⚕</div>
                     <div class="volunteer-info">
@@ -284,7 +284,7 @@
                     </div>
                 </div>
 
-                <!-- Volunteer 3 -->
+                
                 <div class="volunteer-card">
                     <div class="volunteer-avatar">👩</div>
                     <div class="volunteer-info">
@@ -305,17 +305,17 @@
     </footer>
 
     <script>
-        // Wait for the page to fully load
+        
         document.addEventListener('DOMContentLoaded', function() {
             
             const langEnBtn = document.getElementById('lang-en');
             const langBnBtn = document.getElementById('lang-bn');
             const htmlTag = document.documentElement;
             
-            // Get all elements that have translations
+         
             const translatableElements = document.querySelectorAll('[data-en], [data-bn]');
 
-            // Function to switch language
+            
             function switchLanguage(lang) {
                 translatableElements.forEach(el => {
                     if (lang === 'bn') {
@@ -325,10 +325,10 @@
                     }
                 });
 
-                // Update the html lang attribute
+                
                 htmlTag.setAttribute('lang', lang);
 
-                // Update button states
+                
                 if (lang === 'bn') {
                     langBnBtn.classList.add('active');
                     langEnBtn.classList.remove('active');
@@ -337,15 +337,15 @@
                     langBnBtn.classList.remove('active');
                 }
 
-                // Save the user's choice in localStorage
+                
                 localStorage.setItem('selectedLanguage', lang);
             }
 
-            // Add click event listeners to the buttons
+            
             langEnBtn.addEventListener('click', () => switchLanguage('en'));
             langBnBtn.addEventListener('click', () => switchLanguage('bn'));
 
-            // On page load, check for a saved language preference
+            
             const savedLanguage = localStorage.getItem('selectedLanguage');
             if (savedLanguage) {
                 switchLanguage(savedLanguage);
